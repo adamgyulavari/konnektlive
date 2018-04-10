@@ -9,3 +9,4 @@ gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rbenv'
 gem 'capistrano3-puma'
+gem 'capistrano-cookbook', require: false, group: :development
