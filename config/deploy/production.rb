@@ -5,7 +5,8 @@
 set :stage, :production
 
 server "konnektlive.com", user: "deployer", roles: %w{app db web}
-set :nginx_server_name, "konnektlive.com"
+set :nginx_server_name, "konnektlive.com www.konnektlive.com"
+set :nginx_domains, "konnektlive.com www.konnektlive.com"
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 

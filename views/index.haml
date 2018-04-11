@@ -2,7 +2,7 @@
 %html{lang: 'hu', prefix: 'og: http://ogp.me/ns#'}
   %head
     / Theme Made By www.w3schools.com - No Copyright
-    %title Konnek Live
+    %title Konnek Live - 2018. május 26.
     %meta{charset: 'utf-8'}
     %link{href: 'stylesheets/style.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto', rel: 'stylesheet'}
@@ -14,24 +14,59 @@
   %section.title
     %img{src: 'images/konnekt_live-logo.png', alt: 'Konnekt Live logo'}
   %section.white
-    %span.fas.fa-camera-retro
     %h2
       Középiskolásoknak huszonévesektől
       %br
       Szakmák testközelből
-    %p
-      Május 26-án 200 középiskolás diák több mint 30 különböző szakmát ismerhet meg közvetlen közelről. Egy teljes napon keresztül szabadon beszélgethetsz fiatal felnőttekkel a szakmájukról, szakmabeli mindennapjaikról és az ahhoz vezető útjukról. Egy rendezett kavalkádot hozunk létre, tele szakmákról beszélgető asztaltársaságokkal, melyekhez bármikor csatlakozhatsz. Szabadon mozoghatsz egyik szakmabelitől a másikhoz, felteheted nekik a kérdéseidet és meghallgathatod a történeteiket. Mindemellett pedig izgalmas előadásokkal, fórumbeszélgetésekkel és interaktív programokkal is készülünk.
+    .row
+      .icon
+        %span.far.fa-calendar-check
+        %h3 2018. május 26.
+        %p
+          Vésd be a naptáradba, írd fel a hűtőre! 10:00-kor kezdünk és 17:00-kor fejeződnek be a programok.
+      .icon
+        %span.fas.fa-user-md
+        %h3 30+ szakma
+        %p
+          Elhozunk több, mint 30 szakmát képviselő szakmabelit, akiktől kis 4-6 fős asztaltársaságokban bármit megkérdezhetsz.
+      .icon
+        %span.fas.fa-users
+        %h3 200 középiskolás
+        %p
+          A rendezvényen 200 útkereső társaddal veszel majd részt, ezért a hamarosan induló jelentkezés regisztrációhoz kötött.
+    .row
+      .icon
+        %span.far.fa-comments
+        %h3 Kötetlen beszélgetések
+        %p
+          Addig beszélgethetsz egy szakmabelivel, ameddig jól esik, akkor mehetsz tovább, amikor minden kérdésedre választ kaptál.
+      .icon
+        %span.far.fa-thumbs-up
+        %h3 Izgalmas sztorik
+        %p
+          A kötetlen beszélgetések mellett 15-20 perces előadásokon is betekintést nyerhetsz egy-két szakma világába.
+      .icon
+        %span.fas.fa-user-circle
+        %h3 Személyes példák
+        %p
+          A szakmában dolgozóktól kaphatsz tényleges, reális képet.
   %section.grey
-    %h2
-      További információ hamarosan
+    %h2.text
+      Folyamatosan frissítjük majd az oldalt a meghívott szakmák és képviselőik nevével. A regisztráció április második felében indul.
+  %section.grey
+    %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/akffjQQacTk?rel=0", :width => "560"}
   %section.green.bottom
-    %h2
-      Konnekt LIVE hírlevél
-    %h6
-      Iratkozz fel, ha nem akarsz lemaradni.
-    %form
-      %input{name: 'email', class: 'email', placeholder: 'Email cím'}
-      %input{type: 'submit', value: 'Feliratkozom'}
+    %h2{id: 'newsletter'}
+      Konnekt LIVE frissítések
+    - unless @success
+      %h6.text
+        Iratkozz fel, ha nem akarsz lemaradni a legújabban felkerült szakmákról vagy a regisztráció megindulásáról.
+      %form{method: 'post'}
+        %input{name: 'email', class: 'email', placeholder: 'Email cím'}
+        %input{type: 'submit', value: 'Feliratkozom'}
+    - else
+      %h6
+        Köszönjük, hogy feliratkoztál. Jelentkezünk minden újdonsággal.
   %section.white
     .scroller
       %a{href: '#top'}
@@ -40,3 +75,18 @@
     %h3
       %a{href: 'http://knnkt.org', target: '_blank'}
         ©2018 Konnekt Egyesület
+      .social
+        %a{:href => "https://www.facebook.com/konnektmentorprogram", :target => "_blank"}
+          %i.fab.fa-facebook-square
+        %a{:href => "https://www.youtube.com/channel/UCec5Hmtp-Vuv2aNZhZBga3w", :target => "_blank"}
+          %i.fab.fa-youtube
+        %a{:href => "https://www.instagram.com/konnektmentorprogram/", :target => "_blank"}
+          %i.fab.fa-instagram
+  %script{:crossorigin => "anonymous", :integrity => "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", :src => "https://code.jquery.com/jquery-3.3.1.min.js"}
+  - if @success
+    :javascript
+      $(()=>{
+        $('html, body').animate({
+          scrollTop: $("#newsletter").offset().top
+      }, 1000);
+      })

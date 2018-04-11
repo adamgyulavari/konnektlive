@@ -5,6 +5,8 @@ gem 'puma'
 gem 'haml'
 gem 'sass'
 
+gem 'firebase'
+
 gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rbenv'
