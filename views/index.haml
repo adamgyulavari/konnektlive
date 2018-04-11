@@ -50,6 +50,16 @@
         %h3 Személyes példák
         %p
           A szakmában dolgozóktól kaphatsz tényleges, reális képet.
+  %section.green
+    %h2
+      A rendezvény helyszíne
+    .row
+      .icon
+        %a{href: 'http://www.brody.land/brody-studios/'}
+          %span.fas.fa-map-marker-alt
+          %h3 Bródy Studios
+          %p
+            Budapest VI. kerület, Vörösmarty utca 38. 
   %section.grey
     %h2.text
       Folyamatosan frissítjük majd az oldalt a meghívott szakmák és képviselőik nevével. A regisztráció április második felében indul.
@@ -69,18 +79,20 @@
         Köszönjük, hogy feliratkoztál. Jelentkezünk minden újdonsággal.
   %section.white
     .scroller
-      %a{href: '#top'}
+      %a.onwhite{href: '#top'}
         %img{src: 'images/arrow.png'}
         Tetejére
+    %h4
+      %a.email.onwhite{href: 'mailto:hello@konnektlive.com'} hello@konnektlive.com
     %h3
-      %a{href: 'http://knnkt.org', target: '_blank'}
+      %a.onwhite{href: 'http://knnkt.org', target: '_blank'}
         ©2018 Konnekt Egyesület
       .social
-        %a{:href => "https://www.facebook.com/konnektmentorprogram", :target => "_blank"}
+        %a.onwhite{:href => "https://www.facebook.com/konnektmentorprogram", :target => "_blank"}
           %i.fab.fa-facebook-square
-        %a{:href => "https://www.youtube.com/channel/UCec5Hmtp-Vuv2aNZhZBga3w", :target => "_blank"}
+        %a.onwhite{:href => "https://www.youtube.com/channel/UCec5Hmtp-Vuv2aNZhZBga3w", :target => "_blank"}
           %i.fab.fa-youtube
-        %a{:href => "https://www.instagram.com/konnektmentorprogram/", :target => "_blank"}
+        %a.onwhite{:href => "https://www.instagram.com/konnektmentorprogram/", :target => "_blank"}
           %i.fab.fa-instagram
   %script{:crossorigin => "anonymous", :integrity => "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", :src => "https://code.jquery.com/jquery-3.3.1.min.js"}
   - if @success
