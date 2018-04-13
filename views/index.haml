@@ -62,7 +62,7 @@
     - unless @success
       %h6.text= @texts['news-description']
       %form{method: 'post'}
-        %input{name: 'email', class: 'email', placeholder: 'Email cím'}
+        %input{name: 'email', class: 'email', placeholder: 'Email cím', type: 'email', required: 'true'}
         %input{type: 'submit', value: 'Feliratkozom'}
     - else
       %h6= @texts['news-success']
