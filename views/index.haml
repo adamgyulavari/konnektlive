@@ -68,7 +68,7 @@
       %h6= @texts['news-success']
   %section.white
     .scroller
-      %a.onwhite{href: '#top'}
+      %a.onwhite{id: 'to-top', href: '#'}
         %img{src: 'images/arrow.png'}
         = @texts['to-top']
     %h4
@@ -91,3 +91,10 @@
           scrollTop: $("#newsletter").offset().top
       }, 1000);
       })
+  :javascript
+    $('#to-top').on('click', (e) => {
+      e.preventDefault()
+      $('html, body').animate({
+        scrollTop: 0
+    }, 1000);
+    })
