@@ -1,90 +1,78 @@
 !!!
 %html{lang: 'hu', prefix: 'og: http://ogp.me/ns#'}
   %head
-    %title Konnekt Live - 2018. május 26.
+    %title= @texts['title']
     %meta{charset: 'utf-8'}
     %link{href: 'stylesheets/style.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
 %body
   %header.green
-    %h2
-      Tudd meg, mi rejlik 30+ szakma mindennapjai mögött!
+    %h2= @texts['main-header']
   %section.title
     %img{src: 'images/konnekt_live-logo.png', alt: 'Konnekt Live logo'}
   %section.white
     %h2
-      Középiskolásoknak huszonévesektől
+      = @texts['white-header-1']
       %br
-      Szakmák testközelből
+      = @texts['white-header-2']
     .row
       .icon
         %span.far.fa-calendar-check
-        %h3 2018. május 26.
-        %p
-          Vésd be a naptáradba, írd fel a hűtőre! 10:00-kor kezdünk és 17:00-kor fejeződnek be a programok.
+        %h3= @texts['date-title']
+        %p= @texts['date-description']
       .icon
         %span.fas.fa-user-md
-        %h3 30+ szakma
-        %p
-          Elhozunk több mint 30 szakmát képviselő szakmabelit, akiktől kis 4-6 fős asztaltársaságokban bármit megkérdezhetsz.
+        %h3= @texts['prof-title']
+        %p= @texts['prof-description']
       .icon
         %span.fas.fa-users
-        %h3 200 középiskolás
-        %p
-          A rendezvényen 200 útkereső társaddal veszel majd részt, ezért a hamarosan induló jelentkezés regisztrációhoz kötött.
+        %h3= @texts['students-title']
+        %p= @texts['students-description']
     .row
       .icon
         %span.far.fa-comments
-        %h3 Kötetlen beszélgetések
-        %p
-          Addig beszélgethetsz egy szakmabelivel, ameddig jól esik, akkor mehetsz tovább, amikor minden kérdésedre választ kaptál.
+        %h3= @texts['talks-title']
+        %p= @texts['talks-description']
       .icon
         %span.far.fa-thumbs-up
-        %h3 Izgalmas sztorik
-        %p
-          A kötetlen beszélgetések mellett 15-20 perces előadásokon is betekintést nyerhetsz egy-két szakma világába.
+        %h3= @texts['stories-title']
+        %p= @texts['stories-description']
       .icon
         %span.fas.fa-user-circle
-        %h3 Személyes példák
-        %p
-          A szakmában dolgozóktól kaphatsz tényleges, reális képet.
+        %h3= @texts['ex-title']
+        %p= @texts['ex-description']
   %section.green
-    %h2
-      A rendezvény helyszíne
+    %h2= @texts['loc-title']
     .row
       .icon
-        %a{href: 'http://www.brody.land/brody-studios/'}
+        %a{href: @texts['loc-link']}
           %span.fas.fa-map-marker-alt
-          %h3 Brody Studios
-          %p
-            Budapest VI. kerület, Vörösmarty utca 38. 
+          %h3= @texts['loc-subtitle']
+          %p= @texts['loc-description']
   %section.grey
     %h2.text
-      Folyamatosan frissítjük az oldalt a meghívott szakmák és képviselőik információival. 
+      = @texts['info-1']
       %br/
-      A regisztráció április második felében indul.
+      = @texts['info-2']
   %section.grey
-    %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/QbeweQgemWg?rel=0", :width => "560"}
+    %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/#{@texts['youtube-id']}?rel=0", :width => "560"}
   %section.green.bottom
-    %h2{id: 'newsletter'}
-      Konnekt LIVE frissítések
+    %h2{id: 'newsletter'}= @texts['news-title']
     - unless @success
-      %h6.text
-        Iratkozz fel, ha nem akarsz lemaradni a legújabban felkerült szakmákról vagy a regisztráció megindulásáról.
+      %h6.text= @texts['news-description']
       %form{method: 'post'}
         %input{name: 'email', class: 'email', placeholder: 'Email cím'}
         %input{type: 'submit', value: 'Feliratkozom'}
     - else
-      %h6
-        Köszönjük, hogy feliratkoztál. Jelentkezünk minden újdonsággal.
+      %h6= @texts['news-success']
   %section.white
     .scroller
       %a.onwhite{href: '#top'}
         %img{src: 'images/arrow.png'}
-        Tetejére
+        = @texts['to-top']
     %h4
-      %a.email.onwhite{href: 'mailto:hello@konnektlive.com'} hello@konnektlive.com
+      %a.email.onwhite{href: "mailto:#{@texts['email']}"}= @texts['email'] 
     %h3
       %a.onwhite{href: 'http://knnkt.org', target: '_blank'}
         ©2018 Konnekt Egyesület
