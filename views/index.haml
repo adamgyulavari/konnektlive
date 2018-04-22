@@ -8,39 +8,39 @@
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
 %body
   %header.green
-    %h2= @texts['main-header']
+    %h2.rotate-l2= @texts['main-header']
   %section.title
     %img{src: 'images/konnekt_live-logo.png', alt: 'Konnekt Live logo'}
-  %section.white
-    %h2
+  %section.white.main
+    %h1.rotate-r1.blue
       = @texts['white-header-1']
-      %br
+    %h2.rotate-l1.purple
       = @texts['white-header-2']
     .row
       .icon
         %span.far.fa-calendar-check
-        %h3= @texts['date-title']
+        %h3.rotate-l1= @texts['date-title']
         %p= @texts['date-description']
       .icon
         %span.fas.fa-user-md
-        %h3= @texts['prof-title']
+        %h3.rotate-l2= @texts['prof-title']
         %p= @texts['prof-description']
       .icon
         %span.fas.fa-users
-        %h3= @texts['students-title']
+        %h3.rotate-r2= @texts['students-title']
         %p= @texts['students-description']
     .row
       .icon
         %span.far.fa-comments
-        %h3= @texts['talks-title']
+        %h3.rotate-r1= @texts['talks-title']
         %p= @texts['talks-description']
       .icon
         %span.far.fa-thumbs-up
-        %h3= @texts['stories-title']
+        %h3.rotate-l1= @texts['stories-title']
         %p= @texts['stories-description']
       .icon
         %span.fas.fa-user-circle
-        %h3= @texts['ex-title']
+        %h3.rotate-r1= @texts['ex-title']
         %p= @texts['ex-description']
   %section.green
     %h2= @texts['loc-title']
@@ -48,7 +48,7 @@
       .icon
         %a{href: @texts['loc-link']}
           %span.fas.fa-map-marker-alt
-          %h3= @texts['loc-subtitle']
+          %h3.rotate-r2= @texts['loc-subtitle']
           %p= @texts['loc-description']
   %section.grey
     %h2.text
