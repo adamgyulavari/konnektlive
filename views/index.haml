@@ -3,7 +3,7 @@
   %head
     %title= @texts['title']
     %meta{charset: 'utf-8'}
-    %link{href: 'stylesheets/style.css', rel: 'stylesheet'}
+    %link{href: 'stylesheets/style1.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
 %body
@@ -56,7 +56,7 @@
         %span.fas.fa-user-circle
         %h3.rotate-r1= @texts['ex-title']
         %p= @texts['ex-description']
-  %section.green.centered
+  %section.green.centered.whitened
     %h2= @texts['loc-title']
     .row
       .icon
@@ -71,7 +71,7 @@
       = @texts['info-2']
   %section.grey
     %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/#{@texts['youtube-id']}?rel=0", :width => "560"}
-  %section.green.bottom.centered
+  %section.green.bottom.centered.whitened
     %h2{id: 'newsletter'}= @texts['news-title']
     - unless @success
       %h6.text= @texts['news-description']
@@ -80,7 +80,7 @@
         %input{type: 'submit', value: 'Feliratkozom'}
     - else
       %h6= @texts['news-success']
-  %section.white
+  %section.white.centered
     .scroller
       %a.onwhite{id: 'to-top', href: '#'}
         %img{src: 'images/arrow.png'}
