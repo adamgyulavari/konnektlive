@@ -8,10 +8,11 @@ class KonnektLive < Sinatra::Base
 
   before do
     @texts = firebase.get('texts').body
+    @professions = firebase.get('professions').body
+    @rotations = %w(rotate-l1 rotate-l2 rotate-r1 rotate-r2)
   end
 
   get '/' do
-    puts @texts.inspect
     haml :index
   end
 

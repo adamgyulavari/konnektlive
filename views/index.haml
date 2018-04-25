@@ -4,13 +4,27 @@
     %title= @texts['title']
     %meta{charset: 'utf-8'}
     %link{href: 'stylesheets/style.css', rel: 'stylesheet'}
-    %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto', rel: 'stylesheet'}
+    %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
 %body
-  %header.green
+  %header.green.centered
     %h2.rotate-l2= @texts['main-header']
   %section.title
-    %img{src: 'images/konnekt_live-logo.png', alt: 'Konnekt Live logo'}
+    %img{src: 'images/konnekt_live_logo_white.png', alt: 'Konnekt Live logo'}
+    - if params[:test]
+      .profs
+        - @professions.each_with_index do |prof, index|
+          %h4{id: "prof-#{index}", class: "#{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
+              data: prof[1]}= prof[1]['title']
+  %section.profession.green.closed
+    %img#prof_image{src: 'https://firebasestorage.googleapis.com/v0/b/konnektlive.appspot.com/o/To%CC%81th%20A%CC%81gi.JPG?alt=media&token=2684f4ff-b177-48e7-a7da-f9d652d23a91', alt: 'Toth Agi'}
+    .details
+      .close.icon
+        %span.fas.fa-times
+      %h2#prof_title{class: "#{@rotations.sample}"} Ruhatervezo
+      %h3#prof_name Toth Agi
+      %p#prof_description
+        Elismert menekültekkel és oltalmazotti sátuszú emberekkel foglalkozom, akik hazájukat kényszerűségből elhagyva itt, nálunk kezdhetnek új életet. Munkám része a státusz megítélése utáni lépések: az elsődleges életfeltételekhez segítés (lakás, élelmiszer, munka), az egészségügyi- és egyéb ellátásokhoz jutás, a szociális és kulturális integráció segítése, pszichés támogatás, stb. Kisgyerekektől idős korig százféle életút, százféle igény, s ezer megoldási lehetőség színesítik a mindennapjaimat!
   %section.white.main
     %h1.rotate-r1.blue
       = @texts['white-header-1']
@@ -42,7 +56,7 @@
         %span.fas.fa-user-circle
         %h3.rotate-r1= @texts['ex-title']
         %p= @texts['ex-description']
-  %section.green
+  %section.green.centered
     %h2= @texts['loc-title']
     .row
       .icon
@@ -51,13 +65,13 @@
           %h3.rotate-r2= @texts['loc-subtitle']
           %p= @texts['loc-description']
   %section.grey
-    %h2.text
+    %h5.text
       = @texts['info-1']
       %br/
       = @texts['info-2']
   %section.grey
     %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/#{@texts['youtube-id']}?rel=0", :width => "560"}
-  %section.green.bottom
+  %section.green.bottom.centered
     %h2{id: 'newsletter'}= @texts['news-title']
     - unless @success
       %h6.text= @texts['news-description']
@@ -97,4 +111,22 @@
       $('html, body').animate({
         scrollTop: 0
     }, 1000);
+    })
+    $('.profs h4').on('click', (e) => {
+      $('#prof_title').text($(e.target).data('title'))
+      $('#prof_name').text($(e.target).data('name'))
+      $('#prof_description').text($(e.target).data('description'))
+      $('#prof_image').attr('src', $(e.target).data('image'))
+      if($('.profession').hasClass('closed')) {
+        $('.profession').removeClass('closed')
+        $('html, body').animate({
+            scrollTop: $(".main").offset().top
+        }, 300);
+      }
+    })
+    $('.profession span').on('click', (e)=> {
+      $('.profession').addClass('closed')
+      $('html, body').animate({
+            scrollTop: $(".title").offset().top
+        }, 300);
     })
