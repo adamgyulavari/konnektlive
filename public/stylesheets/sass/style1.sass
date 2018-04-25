@@ -259,7 +259,21 @@ a
   a
     font-size: 30px
 
-@media (max-width: 800px)
+@media (orientation: portrait)
+  section
+    &.title
+      flex-flow: column
+
+      .profs
+        justify-content: center
+        h4
+          font-size: 40px !important
+    &.profession
+      padding: 50px
+      img
+        margin-right: 50px
+        width: 30%
+  
   .row
     flex-flow: column
     .icon
