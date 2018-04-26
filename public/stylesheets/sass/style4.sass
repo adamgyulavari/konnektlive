@@ -3,6 +3,10 @@ $grey: #e8e8e8
 $orange: #febb15
 $blue: #00c4bc 
 $purple: #d700ff
+
+body
+  width: 100%
+  margin: 0
   
 .green
   background-color: $green
@@ -290,8 +294,33 @@ a
 ::placeholder
   color: white
   opacity: 0.6
+
+figure
+  margin: 0
+  height: 0
+  padding-bottom: 56.25%
+  position: relative
+
+figure iframe
+  position: absolute
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+
 @media (orientation: portrait)
+  .grey
+    h5
+      width: 94%
+      padding: 3%
+  .title
+    img
+      width: 80% !important
+      margin: 10% !important
   .green
+    overflow: hidden
+    h6
+      width: 100%
     form
       width: 100%
       padding: 20px
@@ -309,11 +338,12 @@ a
       .profs
         justify-content: center
         h4
-          font-size: 40px !important
+          flex-wrap: nowrap 
+          font-size: 35px !important
     &.profession
-      padding: 50px
+      padding: 10%
       img
-        margin-right: 50px
+        margin-right: 10%
         width: 30%
   
   .row
