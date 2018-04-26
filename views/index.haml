@@ -75,9 +75,22 @@
     %h2{id: 'newsletter'}= @texts['news-title']
     - unless @success
       %h6.text= @texts['news-description']
-      %form{method: 'post'}
-        %input{name: 'email', class: 'email', placeholder: 'Email cím', type: 'email', required: 'true'}
-        %input{type: 'submit', value: 'Feliratkozom'}
+      - if params[:reg_test]
+        %form{method: 'post'}
+          %input{name: 'email', class: 'email full', placeholder: 'Email cím', type: 'email', required: 'true'}
+          %input{name: 'name', class: 'email full', placeholder: 'Teljes neved', type: 'name', required: 'true'}
+          %input{name: 'year', class: 'email full', placeholder: 'Születési éved', type: 'number', required: 'true'}
+          %input{name: 'school', class: 'email full', placeholder: 'Iskolád neve', type: 'text', required: 'true'}
+          .prof-checks
+            - @professions.each do |prof|
+              .prof
+                %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "prof-#{prof[0]}"}
+                %label{for: "prof-#{prof[0]}"}= prof[1]['title']
+          %input{type: 'submit', value: 'Regisztrálok', class: 'full button'}
+      - else
+        %form{method: 'post'}
+          %input{name: 'email', class: 'email', placeholder: 'Email cím', type: 'email', required: 'true'}
+          %input{type: 'submit', value: 'Feliratkozom'}
     - else
       %h6= @texts['news-success']
   %section.white.centered
@@ -97,6 +110,7 @@
           %i.fab.fa-youtube
         %a.onwhite{:href => "https://www.instagram.com/konnektmentorprogram/", :target => "_blank"}
           %i.fab.fa-instagram
+    .empty
   %script{:crossorigin => "anonymous", :integrity => "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", :src => "https://code.jquery.com/jquery-3.3.1.min.js"}
   - if @success
     :javascript
@@ -120,8 +134,8 @@
       if($('.profession').hasClass('closed')) {
         $('.profession').removeClass('closed')
         $('html, body').animate({
-            scrollTop: $(".main").offset().top
-        }, 300);
+            scrollTop: $(".main").offset().top - 100
+        }, 500);
       }
     })
     $('.profession span').on('click', (e)=> {
@@ -129,4 +143,11 @@
       $('html, body').animate({
             scrollTop: $(".title").offset().top
         }, 300);
+    })
+    console.log("bla")
+    $('.profs h4').each((i, item) => {
+      let image = new Image()
+      console.log("bla" + $(item).data('image'))
+      image.src = $(item).data('image')
+      $(".empty").append(image)
     })

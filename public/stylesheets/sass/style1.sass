@@ -165,7 +165,7 @@ section
     width: 600px
     margin: 0 auto
 
-    input
+    .full
       border-width: 4px
       border-style: solid
       padding: 8px
@@ -179,13 +179,13 @@ section
         color: white
         font-size: 15px
 
-      &[type=submit]
-        background-color: black !important
-        border-color: #000000
-        color: white
-        font-size: 18px
-        text-transform: uppercase
-        font-weight: bold
+    .button
+      background-color: black !important
+      border-color: #000000
+      color: white
+      font-size: 18px
+      text-transform: uppercase
+      font-weight: bold
   a
     color: white
 
@@ -253,13 +253,41 @@ a
     p
       font-size: 15px
       text-align: center
-.white
+.prof-checks
+  padding: 10px
+  display: flex
+  align-items: flex-start
+  flex-flow: row
+  flex-wrap: wrap
+  text-align: left
+  .prof
+    padding: 5px
+    flex-flow: row
+    width: 30%
 
 .social
   a
     font-size: 30px
 
+.empty
+  max-width: 0
+  overflow: hidden
+
+::placeholder
+  color: white
+  opacity: 0.6
 @media (orientation: portrait)
+  .green
+    form
+      width: 100%
+      padding: 20px
+      box-sizing: border-box
+      input
+        font-size: 40px !important
+  .prof-checks
+    .prof
+      width: 80%
+      font-size: 30px
   section
     &.title
       flex-flow: column
