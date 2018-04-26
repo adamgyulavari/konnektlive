@@ -3,7 +3,7 @@
   %head
     %title= @texts['title']
     %meta{charset: 'utf-8'}
-    %link{href: 'stylesheets/style1.css', rel: 'stylesheet'}
+    %link{href: 'stylesheets/style2.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
 %body
@@ -14,8 +14,9 @@
     - if params[:test]
       .profs
         - @professions.each_with_index do |prof, index|
-          %h4{id: "prof-#{index}", class: "#{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
+          %h4{id: "prof-#{index}", class: "prof-item #{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
               data: prof[1]}= prof[1]['title']
+        %h4{class: "#{@rotations.sample} green"}= @texts['and-more']
   %section.profession.green.closed
     %img#prof_image{src: 'https://firebasestorage.googleapis.com/v0/b/konnektlive.appspot.com/o/To%CC%81th%20A%CC%81gi.JPG?alt=media&token=2684f4ff-b177-48e7-a7da-f9d652d23a91', alt: 'Toth Agi'}
     .details
@@ -72,27 +73,29 @@
   %section.grey
     %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/#{@texts['youtube-id']}?rel=0", :width => "560"}
   %section.green.bottom.centered.whitened
-    %h2{id: 'newsletter'}= @texts['news-title']
+    %h2{id: 'newsletter'}= params[:reg_test] ? @texts['reg-title'] : @texts['news-title']
     - unless @success
-      %h6.text= @texts['news-description']
+      %h6.text= params[:reg_test] ? @texts['reg-description'] : @texts['news-description']
       - if params[:reg_test]
         %form{method: 'post'}
           %input{name: 'email', class: 'email full', placeholder: 'Email cím', type: 'email', required: 'true'}
           %input{name: 'name', class: 'email full', placeholder: 'Teljes neved', type: 'name', required: 'true'}
           %input{name: 'year', class: 'email full', placeholder: 'Születési éved', type: 'number', required: 'true'}
           %input{name: 'school', class: 'email full', placeholder: 'Iskolád neve', type: 'text', required: 'true'}
+          %h6 Ezek a szakmák érdekelnek:
           .prof-checks
             - @professions.each do |prof|
               .prof
                 %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "prof-#{prof[0]}"}
                 %label{for: "prof-#{prof[0]}"}= prof[1]['title']
-          %input{type: 'submit', value: 'Regisztrálok', class: 'full button'}
+          %a{href: @texts['terms-url']}= @texts['terms-title']
+          %input{type: 'submit', value: @texts['reg-button'], class: 'full button'}
       - else
         %form{method: 'post'}
-          %input{name: 'email', class: 'email', placeholder: 'Email cím', type: 'email', required: 'true'}
-          %input{type: 'submit', value: 'Feliratkozom'}
+          %input{name: 'email', class: 'email full', placeholder: 'Email cím', type: 'email', required: 'true'}
+          %input{type: 'submit', value: 'Feliratkozom', class: 'full button'}
     - else
-      %h6= @texts['news-success']
+      %h6= params[:reg_test] ? @texts['reg-success'] : @texts['news-success']
   %section.white.centered
     .scroller
       %a.onwhite{id: 'to-top', href: '#'}
@@ -126,10 +129,10 @@
         scrollTop: 0
     }, 1000);
     })
-    $('.profs h4').on('click', (e) => {
+    $('.profs .prof-item').on('click', (e) => {
       $('#prof_title').text($(e.target).data('title'))
       $('#prof_name').text($(e.target).data('name'))
-      $('#prof_description').text($(e.target).data('description'))
+      $('#prof_description').text($(e.target).data('long'))
       $('#prof_image').attr('src', $(e.target).data('image'))
       if($('.profession').hasClass('closed')) {
         $('.profession').removeClass('closed')
@@ -145,7 +148,7 @@
         }, 300);
     })
     console.log("bla")
-    $('.profs h4').each((i, item) => {
+    $('.profs .prof-item').each((i, item) => {
       let image = new Image()
       console.log("bla" + $(item).data('image'))
       image.src = $(item).data('image')
