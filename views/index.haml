@@ -3,7 +3,7 @@
   %head
     %title= @texts['title']
     %meta{charset: 'utf-8'}
-    %link{href: 'stylesheets/style2.css', rel: 'stylesheet'}
+    %link{href: 'stylesheets/style3.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
 %body
@@ -77,11 +77,13 @@
     - unless @success
       %h6.text= params[:reg_test] ? @texts['reg-description'] : @texts['news-description']
       - if params[:reg_test]
-        %form{method: 'post'}
-          %input{name: 'email', class: 'email full', placeholder: 'Email cím', type: 'email', required: 'true'}
-          %input{name: 'name', class: 'email full', placeholder: 'Teljes neved', type: 'name', required: 'true'}
-          %input{name: 'year', class: 'email full', placeholder: 'Születési éved', type: 'number', required: 'true'}
-          %input{name: 'school', class: 'email full', placeholder: 'Iskolád neve', type: 'text', required: 'true'}
+        - if (@errors && !@errors.empty?)
+          %p.error.purple= @errors.join(" ")
+        %form{method: 'post', action: '/reg'}
+          %input{name: 'reg[email]', class: 'email full', placeholder: 'Email cím', type: 'email', required: 'true', value: params['reg']['email']}
+          %input{name: 'reg[name]', class: 'email full', placeholder: 'Teljes neved', type: 'name', required: 'true', value: params['reg']['name']}
+          %input{name: 'reg[year]', class: 'email full', placeholder: 'Születési éved', type: 'number', required: 'true', value: params['reg']['year']}
+          %input{name: 'reg[school]', class: 'email full', placeholder: 'Iskolád neve', type: 'text', required: 'true', value: params['reg']['school']}
           %h6 Ezek a szakmák érdekelnek:
           .prof-checks
             - @professions.each do |prof|
@@ -115,7 +117,7 @@
           %i.fab.fa-instagram
     .empty
   %script{:crossorigin => "anonymous", :integrity => "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", :src => "https://code.jquery.com/jquery-3.3.1.min.js"}
-  - if @success
+  - if @success || (@errors && !@errors.empty?)
     :javascript
       $(()=>{
         $('html, body').animate({
