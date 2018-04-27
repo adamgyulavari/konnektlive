@@ -4,13 +4,13 @@
     %title= @texts['title']
     %meta{charset: 'utf-8'}
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
-    %link{href: 'stylesheets/style4.css', rel: 'stylesheet'}
+    %link{href: 'stylesheets/style5.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
 %body
   %header.green.centered
     %h2.rotate-l2= @texts['main-header']
-  %section.title
+  %section.title{class: params[:bg_test] ? 'title2' : ''}
     %img{src: 'images/konnekt_live_logo_white.png', alt: 'Konnekt Live logo'}
     - if params[:test]
       .profs
