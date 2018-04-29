@@ -10,7 +10,7 @@
 %body
   %header.green.centered
     %h2.rotate-l2= @texts['main-header']
-  %section.title{class: params[:bg_test] ? 'title2' : ''}
+  %section.title
     %img{src: 'images/konnekt_live_logo_white.png', alt: 'Konnekt Live logo'}
     - if params[:test]
       .profs
