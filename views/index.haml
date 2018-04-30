@@ -12,12 +12,11 @@
     %h2.rotate-l2= @texts['main-header']
   %section.title
     %img{src: 'images/konnekt_live_logo_white.png', alt: 'Konnekt Live logo'}
-    - if params[:test]
-      .profs
-        - @professions.each_with_index do |prof, index|
-          %h4{id: "prof-#{index}", class: "prof-item #{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
-              data: prof[1]}= prof[1]['title']
-        %h4{class: "#{@rotations.sample} green"}= @texts['and-more']
+    .profs
+      - @professions.each_with_index do |prof, index|
+        %h4{id: "prof-#{index}", class: "prof-item #{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
+            data: prof[1]}= prof[1]['title']
+      %h4{class: "#{@rotations.sample} green"}= @texts['and-more']
   %section.profession.green.closed
     %img#prof_image{src: 'https://firebasestorage.googleapis.com/v0/b/konnektlive.appspot.com/o/To%CC%81th%20A%CC%81gi.JPG?alt=media&token=2684f4ff-b177-48e7-a7da-f9d652d23a91', alt: 'Toth Agi'}
     .details
