@@ -10,6 +10,9 @@ class KonnektLive < Sinatra::Base
     @texts = firebase.get('texts').body
     @professions = firebase.get('professions').body
     @rotations = %w(rotate-l1 rotate-l2 rotate-r1 rotate-r2)
+    if params[:reg_test]
+      @professions['test'] = {'title' => 'bela'}
+    end
   end
 
   get '/' do
@@ -35,7 +38,7 @@ class KonnektLive < Sinatra::Base
     else
       response = firebase.push("registrations", params['reg'])
     end
-    
+
     params[:reg_test] = 1
     @success = @errors.empty?
     haml :index

@@ -14,7 +14,8 @@
     %img{src: 'images/konnekt_live_logo_white.png', alt: 'Konnekt Live logo'}
     .profs
       - @professions.each_with_index do |prof, index|
-        %h4{id: "prof-#{index}", class: "prof-item #{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
+        - if prof[1]['image']
+          %h4{id: "prof-#{index}", class: "prof-item #{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
             data: prof[1]}= prof[1]['title']
       %h4{class: "#{@rotations.sample} green"}= @texts['and-more']
   %section.profession.green.closed
@@ -88,9 +89,10 @@
           %h6 Ezek a szakmák érdekelnek:
           .prof-checks
             - @professions.each do |prof|
-              .prof
-                %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "prof-#{prof[0]}"}
-                %label{for: "prof-#{prof[0]}"}= prof[1]['title']
+              - if prof[1]['title']
+                .prof
+                  %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "prof-#{prof[0]}"}
+                  %label{for: "prof-#{prof[0]}"}= prof[1]['title']
           %a{href: @texts['terms-url']}= @texts['terms-title']
           %input{type: 'submit', value: @texts['reg-button'], class: 'full button'}
       - else
