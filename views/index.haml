@@ -4,13 +4,13 @@
     %title= @texts['title']
     %meta{charset: 'utf-8'}
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
-    %link{href: 'stylesheets/style6.css', rel: 'stylesheet'}
+    %link{href: 'stylesheets/style7.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
 %body
   %header.green.centered
     %h2.rotate-l2= @texts['main-header']
-  %section.title
+  %section.title.strict
     %img{src: 'images/konnekt_live_logo_white.png', alt: 'Konnekt Live logo'}
     .profs
       - @professions.each_with_index do |prof, index|
@@ -18,7 +18,7 @@
           %h4{id: "prof-#{index}", class: "prof-item #{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
             data: prof[1]}= prof[1]['title']
       %h4{class: "#{@rotations.sample} green"}= @texts['and-more']
-  %section.profession.green.closed
+  %section.profession.green.closed.strict
     %img#prof_image{src: 'https://firebasestorage.googleapis.com/v0/b/konnektlive.appspot.com/o/To%CC%81th%20A%CC%81gi.JPG?alt=media&token=2684f4ff-b177-48e7-a7da-f9d652d23a91', alt: 'Toth Agi'}
     .details
       .close.icon
@@ -27,7 +27,7 @@
       %h3#prof_name Toth Agi
       %p#prof_description
         Elismert menekültekkel és oltalmazotti sátuszú emberekkel foglalkozom, akik hazájukat kényszerűségből elhagyva itt, nálunk kezdhetnek új életet. Munkám része a státusz megítélése utáni lépések: az elsődleges életfeltételekhez segítés (lakás, élelmiszer, munka), az egészségügyi- és egyéb ellátásokhoz jutás, a szociális és kulturális integráció segítése, pszichés támogatás, stb. Kisgyerekektől idős korig százféle életút, százféle igény, s ezer megoldási lehetőség színesítik a mindennapjaimat!
-  %section.white.main
+  %section.white.main.strict
     %h1.rotate-r1.blue
       = @texts['white-header-1']
     %h2.rotate-l1.purple
@@ -58,7 +58,7 @@
         %span.fas.fa-user-circle
         %h3.rotate-r1= @texts['ex-title']
         %p= @texts['ex-description']
-  %section.green.centered.whitened
+  %section.green.centered.whitened.strict
     %h2= @texts['loc-title']
     .row
       .icon
@@ -66,15 +66,15 @@
           %span.fas.fa-map-marker-alt
           %h3.rotate-r2= @texts['loc-subtitle']
           %p= @texts['loc-description']
-  %section.grey
+  %section.grey.strict
     %h5.text
       = @texts['info-1']
       %br/
       = @texts['info-2']
-  %section.grey
+  %section.grey.strict
     %figure
       %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/#{@texts['youtube-id']}?rel=0", :width => "560"}
-  %section.green.bottom.centered.whitened
+  %section.green.bottom.centered.whitened.strict
     %h2{id: 'newsletter'}= params[:reg_test] ? @texts['reg-title'] : @texts['news-title']
     - unless @success
       %h6.text= params[:reg_test] ? @texts['reg-description'] : @texts['news-description']
