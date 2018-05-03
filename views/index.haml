@@ -7,6 +7,12 @@
     %link{href: 'stylesheets/style7.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
+    %meta{content: @texts['title'], property: "og:title"}/
+    %meta{content: "website", property: "og:type"}/
+    %meta{content: "http://www.konnektlive.com", property: "og:url"}/
+    %meta{content: "http://www.konnektlive.com/images/konnektlive_header.png", property: "og:image"}/
+    %meta{content: @texts['og-desc'], property: 'og:description'}
+
 %body
   %header.green.centered
     %h2.rotate-l2= @texts['main-header']
