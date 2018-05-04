@@ -4,7 +4,7 @@
     %title= @texts['title']
     %meta{charset: 'utf-8'}
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
-    %link{href: 'stylesheets/style7.css', rel: 'stylesheet'}
+    %link{href: 'stylesheets/style8.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
     %meta{content: @texts['title'], property: "og:title"}/
@@ -99,9 +99,15 @@
                 .prof
                   %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "prof-#{prof[0]}"}
                   %label{for: "prof-#{prof[0]}"}= prof[1]['title']
-          %input{name: 'reg[news]', type: 'checkbox', id: 'news-cb'}
-          %label{for: 'news-cb'}= @texts['reg-news']
-          %a{href: @texts['terms-url'], target: '_blank'}= @texts['terms-title']
+          .row
+            %input{name: 'reg[news]', type: 'checkbox', id: 'news-cb'}
+            %label{for: 'news-cb'}= @texts['reg-news']
+          .row
+            %input{name: 'reg[terms]', type: 'checkbox', id: 'terms-cb'}
+            %label{for: 'terms-cb'}
+              Az
+              %a{href: @texts['terms-url'], target: '_blank'}= @texts['terms-title']
+              \-et elfogadom
           %input{type: 'submit', value: @texts['reg-button'], class: 'full button'}
       - else
         %form{method: 'post'}
