@@ -97,7 +97,7 @@
             - @professions.each do |prof|
               - if prof[1]['title']
                 .prof
-                  %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "prof-#{prof[0]}", checked: params['prof'].include?(prof[0])}
+                  %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "prof-#{prof[0]}", checked: params['prof'] && params['prof'].include?(prof[0])}
                   %label{for: "prof-#{prof[0]}"}= prof[1]['title']
           .row
             %input{name: 'reg[news]', type: 'checkbox', id: 'news-cb', value: 'registered'}
