@@ -97,13 +97,13 @@
             - @professions.each do |prof|
               - if prof[1]['title']
                 .prof
-                  %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "prof-#{prof[0]}"}
+                  %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "prof-#{prof[0]}", checked: params['prof'].include?(prof[0])}
                   %label{for: "prof-#{prof[0]}"}= prof[1]['title']
           .row
-            %input{name: 'reg[news]', type: 'checkbox', id: 'news-cb'}
+            %input{name: 'reg[news]', type: 'checkbox', id: 'news-cb', value: 'registered'}
             %label{for: 'news-cb'}= @texts['reg-news']
           .row
-            %input{name: 'reg[terms]', type: 'checkbox', id: 'terms-cb'}
+            %input{name: 'reg[terms]', type: 'checkbox', id: 'terms-cb', value: 'accepted'}
             %label{for: 'terms-cb'}
               Az
               %a{href: @texts['terms-url'], target: '_blank'}= @texts['terms-title']

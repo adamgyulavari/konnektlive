@@ -33,9 +33,16 @@ class KonnektLive < Sinatra::Base
     params['reg']['created'] = Firebase::ServerValue::TIMESTAMP
     params['reg']['professions'] = params['prof']
     @errors = []
+    
     if params['reg']['year'].to_i > 2002 || params['reg']['year'].to_i < 1920
       @errors.push @texts['errors-year']
-    else
+    end
+
+    if params['reg']['terms'] != 'accepted'
+      @errors.push @texts['errors-terms']
+    end
+    
+    if @errors.empty?
       response = firebase.push("registrations", params['reg'])
     end
 
