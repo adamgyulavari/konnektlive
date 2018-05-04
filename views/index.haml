@@ -81,40 +81,35 @@
     %figure
       %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/#{@texts['youtube-id']}?rel=0", :width => "560"}
   %section.green.bottom.centered.whitened.strict
-    %h2{id: 'newsletter'}= params[:reg_test] ? @texts['reg-title'] : @texts['news-title']
+    %h2{id: 'newsletter'}= @texts['reg-title']
     - unless @success
-      %h6.text= params[:reg_test] ? @texts['reg-description'] : @texts['news-description']
-      - if params[:reg_test]
-        - if (@errors && !@errors.empty?)
-          %p.error.purple= @errors.join(" ")
-        %form{method: 'post', action: '/reg'}
-          %input{name: 'reg[email]', class: 'email full', placeholder: 'Email cím', type: 'email', required: 'true', value: params['reg']['email']}
-          %input{name: 'reg[name]', class: 'email full', placeholder: 'Teljes neved', type: 'name', required: 'true', value: params['reg']['name']}
-          %input{name: 'reg[year]', class: 'email full', placeholder: 'Születési éved', type: 'number', required: 'true', value: params['reg']['year']}
-          %input{name: 'reg[school]', class: 'email full', placeholder: 'Iskolád neve', type: 'text', required: 'true', value: params['reg']['school']}
-          %h6 Ezek a szakmák érdekelnek:
-          .prof-checks
-            - @professions.each do |prof|
-              - if prof[1]['title']
-                .prof
-                  %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "prof-#{prof[0]}", checked: params['prof'] && params['prof'].include?(prof[0])}
-                  %label{for: "prof-#{prof[0]}"}= prof[1]['title']
-          .row
-            %input{name: 'reg[news]', type: 'checkbox', id: 'news-cb', value: 'registered'}
-            %label{for: 'news-cb'}= @texts['reg-news']
-          .row
-            %input{name: 'reg[terms]', type: 'checkbox', id: 'terms-cb', value: 'accepted'}
-            %label{for: 'terms-cb'}
-              Az
-              %a{href: @texts['terms-url'], target: '_blank'}= @texts['terms-title']
-              \-et elfogadom
-          %input{type: 'submit', value: @texts['reg-button'], class: 'full button'}
-      - else
-        %form{method: 'post'}
-          %input{name: 'email', class: 'email full', placeholder: 'Email cím', type: 'email', required: 'true'}
-          %input{type: 'submit', value: 'Feliratkozom', class: 'full button'}
+      %h6.text= @texts['reg-description']
+      - if (@errors && !@errors.empty?)
+        %p.error.purple= @errors.join(" ")
+      %form{method: 'post', action: '/reg'}
+        %input{name: 'reg[email]', class: 'email full', placeholder: 'Email cím', type: 'email', required: 'true', value: params['reg']['email']}
+        %input{name: 'reg[name]', class: 'email full', placeholder: 'Teljes neved', type: 'name', required: 'true', value: params['reg']['name']}
+        %input{name: 'reg[year]', class: 'email full', placeholder: 'Születési éved', type: 'number', required: 'true', value: params['reg']['year']}
+        %input{name: 'reg[school]', class: 'email full', placeholder: 'Iskolád neve', type: 'text', required: 'true', value: params['reg']['school']}
+        %h6 Ezek a szakmák érdekelnek:
+        .prof-checks
+          - @professions.each do |prof|
+            - if prof[1]['title']
+              .prof
+                %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "prof-#{prof[0]}", checked: params['prof'] && params['prof'].include?(prof[0])}
+                %label{for: "prof-#{prof[0]}"}= prof[1]['title']
+        .row
+          %input{name: 'reg[news]', type: 'checkbox', id: 'news-cb', value: 'registered'}
+          %label{for: 'news-cb'}= @texts['reg-news']
+        .row
+          %input{name: 'reg[terms]', type: 'checkbox', id: 'terms-cb', value: 'accepted'}
+          %label{for: 'terms-cb'}
+            Az
+            %a{href: @texts['terms-url'], target: '_blank'}= @texts['terms-title']
+            \-et elfogadom
+        %input{type: 'submit', value: @texts['reg-button'], class: 'full button'}
     - else
-      %h6= params[:reg_test] ? @texts['reg-success'] : @texts['news-success']
+      %h6= @texts['reg-success']
   %section.white.centered
     .scroller
       %a.onwhite{id: 'to-top', href: '#'}
