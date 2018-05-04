@@ -80,7 +80,7 @@
   %section.grey.strict
     %figure
       %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/#{@texts['youtube-id']}?rel=0", :width => "560"}
-  %section.green.bottom.centered.whitened.strict
+  %section.green.bottom.centered.whitened.strict#registration
     %h2{id: 'newsletter'}= @texts['reg-title']
     - unless @success
       %h6.text= @texts['reg-description']
@@ -130,11 +130,11 @@
           %i.fab.fa-instagram
     .empty
   %script{:crossorigin => "anonymous", :integrity => "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", :src => "https://code.jquery.com/jquery-3.3.1.min.js"}
-  - if @success || (@errors && !@errors.empty?)
+  - if @success || (@errors && !@errors.empty?) || params['from_reg']
     :javascript
       $(()=>{
         $('html, body').animate({
-          scrollTop: $("#newsletter").offset().top
+          scrollTop: $("#registration").offset().top
       }, 1000);
       })
   :javascript

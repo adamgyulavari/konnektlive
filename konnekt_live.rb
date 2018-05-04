@@ -20,6 +20,13 @@ class KonnektLive < Sinatra::Base
     haml :index
   end
 
+  get '/register' do
+    params['reg'] = {}
+    params['from_reg'] = 1
+    haml :index
+  end
+
+
   post '/' do
     response = firebase.push("newsletter", {
       email: params['email'],
