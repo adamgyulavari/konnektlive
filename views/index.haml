@@ -121,18 +121,20 @@
         %input{type: 'submit', value: @texts['reg-button'], class: 'full button'}
     - else
       %h6= @texts['reg-success']
-  %section.grey.whitened.centered#sponsors
-    %h2= @texts['sponsor-title']
-    .sponsors
-      - @sponsors.each do |sponsor|
-        %a{href: sponsor[1]['url'], target: '_blank'}
-          %img{src: sponsor[1]['image'], alt: sponsor[1]['name']}
-  %section.white.whitened.centered
-    %h2= @texts['partner-title']
-    .partners
-      - @partners.each do |sponsor|
-        %a{href: sponsor[1]['url'], target: '_blank'}
-          %img{src: sponsor[1]['image'], alt: sponsor[1]['name']}
+  - if @sponsors
+    %section.grey.whitened.centered#sponsors
+      %h2= @texts['sponsor-title']
+      .sponsors
+        - @sponsors.each do |sponsor|
+          %a{href: sponsor[1]['url'], target: '_blank'}
+            %img{src: sponsor[1]['image'], alt: sponsor[1]['name']}
+  - if @partners
+    %section.white.whitened.centered
+      %h2= @texts['partner-title']
+      .partners
+        - @partners.each do |sponsor|
+          %a{href: sponsor[1]['url'], target: '_blank'}
+            %img{src: sponsor[1]['image'], alt: sponsor[1]['name']}
   %section.green.whitened.centered.bottom
     %h4
       %a.email.onwhite{href: "mailto:#{@texts['email']}"}= @texts['email'] 
