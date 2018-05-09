@@ -85,7 +85,7 @@
   %section.grey.strict
     %figure
       %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/#{@texts['youtube-id']}?rel=0", :width => "560"}
-  %section.green.bottom.centered.whitened.strict#registration
+  %section.green.centered.whitened.strict#registration
     %h2{id: 'newsletter'}= @texts['reg-title']
     - unless @success
       %h6.text= @texts['reg-description']
@@ -116,11 +116,19 @@
         %input{type: 'submit', value: @texts['reg-button'], class: 'full button'}
     - else
       %h6= @texts['reg-success']
-  %section.white.centered
-    .scroller
-      %a.onwhite{id: 'to-top', href: '#'}
-        %img{src: 'images/arrow.png'}
-        = @texts['to-top']
+  %section.grey.whitened.centered
+    %h2= @texts['sponsor-title']
+    .sponsors
+      - @sponsors.each do |sponsor|
+        %a{href: sponsor[1]['url'], target: '_blank'}
+          %img{src: sponsor[1]['image'], alt: sponsor[1]['name']}
+  %section.white.whitened.centered
+    %h2= @texts['partner-title']
+    .partners
+      - @partners.each do |sponsor|
+        %a{href: sponsor[1]['url'], target: '_blank'}
+          %img{src: sponsor[1]['image'], alt: sponsor[1]['name']}
+  %section.green.whitened.centered.bottom
     %h4
       %a.email.onwhite{href: "mailto:#{@texts['email']}"}= @texts['email'] 
     %h3
@@ -133,6 +141,12 @@
           %i.fab.fa-youtube
         %a.onwhite{:href => "https://www.instagram.com/konnektmentorprogram/", :target => "_blank"}
           %i.fab.fa-instagram
+  %section.white.centered
+    .scroller
+      %a.onwhite{id: 'to-top', href: '#'}
+        %img{src: 'images/arrow.png'}
+        = @texts['to-top']
+    
     .empty
   %script{:crossorigin => "anonymous", :integrity => "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", :src => "https://code.jquery.com/jquery-3.3.1.min.js"}
   - if @success || (@errors && !@errors.empty?) || params['from_reg']
