@@ -1,0 +1,47 @@
+!!!
+%html{lang: 'hu', prefix: 'og: http://ogp.me/ns#'}
+  %head
+    %title= @texts['title']
+    %meta{charset: 'utf-8'}
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %link{href: 'stylesheets/style9.css', rel: 'stylesheet'}
+    %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
+    %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
+    %meta{content: @texts['title'], property: "og:title"}/
+    %meta{content: "website", property: "og:type"}/
+    %meta{content: "http://www.konnektlive.com", property: "og:url"}/
+    %meta{content: "http://www.konnektlive.com/images/konnektlive_header.png", property: "og:image"}/
+    %meta{content: @texts['og-desc'], property: 'og:description'}
+
+%body
+  %header.green.centered
+    %h2.rotate-l2 Admin area
+  %section.white.main.strict.max
+    %h1.rotate-r1.blue= "Newsletter signups (#{@news_signups.count})"
+    %p
+      Before registration:
+      - @news_signups.each do |n|
+        = n[1]['email'] + ','
+    %p
+      With registration:
+      - @regs.each do |reg|
+        - if reg[1]['news']
+          = reg[1]['email'] + ','
+    %h1.rotate-l1.purple= "Registrations (#{@regs.count})"
+    %a{href: '/csv?key=' + params[:key]}
+      %h4.blue.white Download reg data
+    %p
+      - @regs.each do |reg|
+        = reg[1]['email'] + ','
+    %h1.rotate-r2.blue Schools
+    %table
+      - @schools.each do |s|
+        %tr
+          %td= s[0]
+          %td= s[1]
+    %h1.rotate-l2.purple Professions
+    %table
+      - @profs.each do |s|
+        %tr
+          %td= s[0]
+          %td= s[1]
