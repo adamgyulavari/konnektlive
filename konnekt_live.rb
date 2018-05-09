@@ -4,15 +4,19 @@ require 'json'
 
 class KonnektLive < Sinatra::Base
   private_key_json_string = File.open('config/konnektlive-firebase.json').read
-  firebase = Firebase::Client.new("https://konnektlive.firebaseio.com", private_key_json_string)
+  # firebase = Firebase::Client.new("https://konnektlive.firebaseio.com", private_key_json_string)
 
   before do
-    @texts = firebase.get('texts').body
-    @professions = firebase.get('professions').body
-    @rotations = %w(rotate-l1 rotate-l2 rotate-r1 rotate-r2)
-    if params[:reg_test]
-      @professions['test'] = {'title' => 'bela'}
+    begin
+      @texts = firebase.get('texts').body
+      @professions = firebase.get('professions').body
+    rescue
+      file = File.read('dummy_data.json')
+      data_hash = JSON.parse(file)
+      @texts = data_hash['texts']
+      @professions = data_hash['professions']
     end
+    @rotations = %w(rotate-l1 rotate-l2 rotate-r1 rotate-r2)
   end
 
   get '/' do
