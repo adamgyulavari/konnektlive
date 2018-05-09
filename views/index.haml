@@ -15,8 +15,13 @@
 
 %body
   %header.green.centered
-    %h2.rotate-l2= @texts['main-header']
-  %section.title.strict
+    %h2.menu{class: @rotations.sample, data: { id: 'professions' }} Szakmak
+    %h2.menu{class: @rotations.sample, data: { id: 'details' }} Mi ez?
+    %h2.menu{class: @rotations.sample, data: { id: 'program' }} Program
+    %h2.menu{class: @rotations.sample, data: { id: 'registration' }} Regisztracio
+    %h2.menu{class: @rotations.sample, data: { id: 'sponsors' }} Tamogatok
+    -# = @texts['main-header']
+  %section.title.strict#professions
     %img{src: 'images/konnekt_live_logo_white.png', alt: 'Konnekt Live logo'}
     .profs
       - @professions.each_with_index do |prof, index|
@@ -38,7 +43,7 @@
         %h3#prof_name_other Toth Agi
         %p#prof_description_other
           Elismert menekültekkel és oltalmazotti sátuszú emberekkel foglalkozom, akik hazájukat kényszerűségből elhagyva itt, nálunk kezdhetnek új életet. Munkám része a státusz megítélése utáni lépések: az elsődleges életfeltételekhez segítés (lakás, élelmiszer, munka), az egészségügyi- és egyéb ellátásokhoz jutás, a szociális és kulturális integráció segítése, pszichés támogatás, stb. Kisgyerekektől idős korig százféle életút, százféle igény, s ezer megoldási lehetőség színesítik a mindennapjaimat!
-  %section.white.main.strict
+  %section.white.main.strict#details
     %h1.rotate-r1.blue
       = @texts['white-header-1']
     %h2.rotate-l1.purple
@@ -116,7 +121,7 @@
         %input{type: 'submit', value: @texts['reg-button'], class: 'full button'}
     - else
       %h6= @texts['reg-success']
-  %section.grey.whitened.centered
+  %section.grey.whitened.centered#sponsors
     %h2= @texts['sponsor-title']
     .sponsors
       - @sponsors.each do |sponsor|
@@ -143,7 +148,7 @@
           %i.fab.fa-instagram
   %section.white.centered
     .scroller
-      %a.onwhite{id: 'to-top', href: '#'}
+      %a.onwhite.black{id: 'to-top', href: '#'}
         %img{src: 'images/arrow.png'}
         = @texts['to-top']
     
@@ -162,6 +167,11 @@
       $('html, body').animate({
         scrollTop: 0
     }, 1000);
+    })
+    $('.menu').on('click', (e) => {
+      $('html, body').animate({
+            scrollTop: $('#'+ $(e.target).data('id')).offset().top - 100
+      }, 500);
     })
     $('.profs .prof-item').on('click', (e) => {
       $('#prof_title').text($(e.target).data('title'))
@@ -191,6 +201,13 @@
         }, 300);
     })
     console.log("bla")
+    $(window).scroll(function() {
+      if ($(document).scrollTop() > 50) {
+        $('header').addClass('shrink');
+      } else {
+        $('header').removeClass('shrink');
+      }
+    });
     $('.profs .prof-item').each((i, item) => {
       let image = new Image()
       console.log("bla" + $(item).data('image'))

@@ -3,7 +3,7 @@ lock "~> 3.10.1"
 
 set :application, "konnekt_live"
 set :repo_url, "git@github.com:adamgyulavari/konnektlive.git"
-set :deploy_to, "/home/deployer/apps/#{fetch(:application)}"
+set :deploy_to, "/home/deployer/apps/#{fetch(:application)}_#{fetch(:stage)}"
 
 set :user, 'deployer'
 set :rbenv_type, :user
