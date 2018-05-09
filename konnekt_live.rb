@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'json'
+require 'csv'
 # require './database'
 require './dummy_database'
 
@@ -68,6 +69,16 @@ class KonnektLive < Sinatra::Base
   get '/csv' do
     if params['key'] != private_secrets['admin_key']
       redirect '/'
+    end
+    content_type 'application/csv'
+    attachment "konnekt_live_registrations-#{Time.now.strftime("%Y%m%d-%H%M")}.csv"
+    @regs = db.get('registrations')
+    csv_string = CSV.generate do |csv|
+      keys = ['name', 'email', 'year', 'school', 'professions', 'news', 'terms', 'created']
+      csv << keys
+      @regs.each do |reg|
+        csv << keys.map{|k| reg[1][k].is_a?(Array) ? reg[1][k].join(" ") : reg[1][k]}
+      end
     end
   end
 
