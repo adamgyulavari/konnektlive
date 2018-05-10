@@ -419,6 +419,30 @@ input[type=checkbox]:checked + label:before
   width: 600px
   margin: 0 auto
 @media (orientation: portrait)
+  header
+    flex-wrap: wrap
+    
+    h2
+      margin: 8px
+      padding: 2px
+      font-size: 26px !important
+    
+    &.shrink
+      h2
+        font-size: 14px !important
+        padding: 2px 1px
+        margin: 5px 3px
+
+  
+  .sponsors, .partners
+    img
+      max-width: 90%
+      margin: 5%
+
+  .programs
+    width: 90%
+    margin: 20px 5%
+    text-align: left
   input[type=checkbox] + label:before
     margin-top: 5px
 
@@ -450,6 +474,7 @@ input[type=checkbox]:checked + label:before
     overflow: hidden
   section
     &.title
+      margin-top: 80px
       flex-flow: column
 
       .profs
