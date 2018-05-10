@@ -97,7 +97,7 @@
             .details
               %h3= program[1]['title']
               - if program[1]['key']
-                %h4.presenter{data: {key: program[1]['key']}}= program[1]['name'] + ', ' + @professions[program[1]['key']]['title']
+                %h4.presenter{data: {key: program[1]['key']}}= @professions[program[1]['key']]['name'] + ', ' + @professions[program[1]['key']]['title']
               %p= program[1]['short']
   %section.grey.strict
     %figure
