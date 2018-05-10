@@ -4,7 +4,7 @@
     %title= @texts['title']
     %meta{charset: 'utf-8'}
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
-    %link{href: 'stylesheets/style9.css', rel: 'stylesheet'}
+    %link{href: 'stylesheets/style10.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
     %meta{content: @texts['title'], property: "og:title"}/
@@ -26,7 +26,7 @@
     .profs
       - @professions.each_with_index do |prof, index|
         - if prof[1]['image'] && (!prof[1]['unpublished'] || params[:test])
-          %h4{id: "prof-#{index}", class: "prof-item #{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
+          %h4{id: "prof-#{prof[0]}", class: "prof-item #{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
             data: prof[1]}= prof[1]['title']
       %h4{class: "#{@rotations.sample} green"}= @texts['and-more']
   %section.profession.green.closed.strict
@@ -85,11 +85,20 @@
           %span.fas.fa-map-marker-alt
           %h3.rotate-r2= @texts['loc-subtitle']
           %p= @texts['loc-description']
-  %section.grey.strict
-    %h5.text
-      = @texts['info-1']
-      %br/
-      = @texts['info-2']
+  %section.grey.whitened.strict#program
+    %h2
+      = @texts['programs-title']
+    .programs
+      - if @programs
+        - @programs.each do |program|
+          .program
+            .start= program[1]['start']
+            .end= program[1]['end']
+            .details
+              %h3= program[1]['title']
+              - if program[1]['key']
+                %h4.presenter{data: {key: program[1]['key']}}= program[1]['name'] + ', ' + @professions[program[1]['key']]['title']
+              %p= program[1]['short']
   %section.grey.strict
     %figure
       %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/#{@texts['youtube-id']}?rel=0", :width => "560"}
@@ -178,6 +187,9 @@
             scrollTop: $('#'+ $(e.target).data('id')).offset().top - 100
       }, 500);
     })
+    $('.presenter').on('click', (e) => {
+      $('#prof-' + $(e.target).data('key')).click()
+    })
     $('.profs .prof-item').on('click', (e) => {
       $('#prof_title').text($(e.target).data('title'))
       $('#prof_name').text($(e.target).data('name'))
@@ -195,7 +207,7 @@
       if($('.profession').hasClass('closed')) {
         $('.profession').removeClass('closed')
         $('html, body').animate({
-            scrollTop: $(".main").offset().top - 100
+            scrollTop: $(".profession").offset().top - 100
         }, 500);
       }
     })

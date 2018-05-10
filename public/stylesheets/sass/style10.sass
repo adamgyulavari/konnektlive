@@ -250,15 +250,34 @@ section
   .program
     display: flex
     flex-flow: row
-    align-items: center
+    align-items: flex-start
     .start
       font-size: 24px
       font-weight: bold
       background-color: $purple
       padding: 5px
+      margin: 5px
+    .end
+      color: $purple
+      margin: 5px
     .details
-      align-items: left
+      margin-left: 10px 
+      display: flex
+      flex-flow: column
+      align-items: flex-start
     h3
+      color: $purple
+      margin: 0
+      padding: 0
+      text-align: left
+    h4
+      cursor: pointer
+      color: $blue
+      margin: 0
+      padding: 0
+      &:hover
+        color: $orange
+    p
       color: $purple
 
 .bottom

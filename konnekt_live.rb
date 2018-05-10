@@ -1,8 +1,8 @@
 require 'sinatra'
 require 'json'
 require 'csv'
-require './database'
-# require './dummy_database'
+# require './database'
+require './dummy_database'
 
 class KonnektLive < Sinatra::Base
   private_secrets = JSON.parse(File.open('config/secrets.json').read)
@@ -11,6 +11,7 @@ class KonnektLive < Sinatra::Base
   before do
     @texts = db.get('texts')
     @professions = db.get('professions')
+    @programs = db.get('programs')
     @sponsors = db.get('sponsors')
     @partners = db.get('partners')
     @rotations = %w(rotate-l1 rotate-l2 rotate-r1 rotate-r2)

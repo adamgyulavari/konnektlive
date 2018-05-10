@@ -1,6 +1,6 @@
 require 'json'
 
-class DummyDatabase
+class Database
   def initialize
     @data_hash = JSON.parse(File.read('dummy_data.json'))
     @a = 'qwertyuioasdfghjlzxcvbm1234567890'.split('')
