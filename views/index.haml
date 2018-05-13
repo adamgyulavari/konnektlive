@@ -99,10 +99,10 @@
         %h6 Ezek a szakmák érdekelnek:
         .prof-checks
           - @professions.each do |prof|
-            - if prof[1]['title']
+            - if prof[1]['title'] && !prof[1]['side']
               .prof
-                %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "prof-#{prof[0]}", checked: params['prof'] && params['prof'].include?(prof[0])}
-                %label{for: "prof-#{prof[0]}"}= prof[1]['title']
+                %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "cb-prof-#{prof[0]}", checked: params['prof'] && params['prof'].include?(prof[0])}
+                %label{for: "cb-prof-#{prof[0]}"}= prof[1]['title']
         .row
           %input{name: 'reg[news]', type: 'checkbox', id: 'news-cb', value: 'registered'}
           %label{for: 'news-cb'}
