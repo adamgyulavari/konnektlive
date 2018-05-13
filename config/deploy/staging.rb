@@ -1,4 +1,4 @@
-set :stage, :production
+set :stage, :staging
 
 server "konnektlive.com", user: "deployer", roles: %w{app db web}
 set :nginx_server_name, "staging.konnektlive.com"
