@@ -20,7 +20,6 @@
     %h2.menu{class: @rotations.sample, data: { id: 'program' }} Program
     %h2.menu{class: @rotations.sample, data: { id: 'registration' }} Regisztráció
     %h2.menu{class: @rotations.sample, data: { id: 'sponsors' }} Támogatók
-    -# = @texts['main-header']
   %section.title.strict#professions
     %img{src: 'images/konnekt_live_logo_white.png', alt: 'Konnekt Live logo'}
     .profs
@@ -98,6 +97,8 @@
               %h3= program[1]['title']
               - if program[1]['key']
                 %h4.presenter{data: {key: program[1]['key']}}= @professions[program[1]['key']]['name'] + ', ' + @professions[program[1]['key']]['title']
+              - elsif program[1]['name']
+                %h4= program[1]['name'].split(';').join('<br/>')
               %p= program[1]['short']
   %section.grey.strict
     %figure

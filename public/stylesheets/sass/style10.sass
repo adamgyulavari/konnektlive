@@ -248,6 +248,7 @@ section
   width: 600px
   margin: 40px auto
   flex-flow: column
+  text-align: left
   .program
     display: flex
     flex-flow: row
@@ -270,14 +271,17 @@ section
       color: $purple
       margin: 0
       padding: 0
-      text-align: left
     h4
-      cursor: pointer
       color: $blue
       margin: 0
       padding: 0
-      &:hover
-        color: $orange
+      font-size: 24px
+      
+      &.presenter
+        cursor: pointer
+        
+        &:hover
+          color: $orange
     p
       color: $purple
 
