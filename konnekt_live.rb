@@ -11,6 +11,9 @@ class KonnektLive < Sinatra::Base
   before do
     @texts = db.get('texts')
     @professions = db.get('professions')
+    @programs = db.get('programs').sort_by {|k, v| "#{v['start']}#{2400-v['end'].split(':').join('').to_i}"}
+    @sponsors = db.get('sponsors')
+    @partners = db.get('partners')
     @rotations = %w(rotate-l1 rotate-l2 rotate-r1 rotate-r2)
   end
 
