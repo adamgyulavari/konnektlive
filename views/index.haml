@@ -4,7 +4,7 @@
     %title= @texts['title']
     %meta{charset: 'utf-8'}
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
-    %link{href: 'stylesheets/style11.css', rel: 'stylesheet'}
+    %link{href: 'stylesheets/style12.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
     %meta{content: @texts['title'], property: "og:title"}/
@@ -134,9 +134,16 @@
             Az
             %a{href: @texts['terms-url'], target: '_blank'}= @texts['terms-title']
             \-et elfogadom
+        .row
+          %input{name: 'reg[pic-terms]', type: 'checkbox', id: 'pic-terms', value: 'accepted'}
+          %label{for: 'pic-terms'}
+            %a{href: @texts['terms-pics-url'], target: '_blank'}= @texts['terms-pics']
         %input{type: 'submit', value: @texts['reg-button'], class: 'full button'}
     - else
       %h6= @texts['reg-success']
+    .fb-page{"data-adapt-container-width" => "true", "data-hide-cover" => "false", "data-href" => "https://www.facebook.com/konnektmentorprogram", "data-show-facepile" => "true", "data-small-header" => "true", "data-tabs" => "events"}
+      %blockquote.fb-xfbml-parse-ignore{:cite => "https://www.facebook.com/konnektmentorprogram"}
+        %a{:href => "https://www.facebook.com/konnektmentorprogram"} Konnekt Mentorprogram
   - if @sponsors
     %section.grey.whitened.centered#sponsors
       %h2= @texts['sponsor-title']
@@ -235,3 +242,10 @@
       image.src = $(item).data('image')
       $(".empty").append(image)
     })
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));

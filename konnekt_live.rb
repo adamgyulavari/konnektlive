@@ -59,7 +59,7 @@ class KonnektLive < Sinatra::Base
       @errors.push @texts['errors-year']
     end
 
-    if params['reg']['terms'] != 'accepted'
+    if params['reg']['terms'] != 'accepted' || params['reg']['pic-terms'] != 'accepted'
       @errors.push @texts['errors-terms']
     end
     
