@@ -24,7 +24,7 @@
     %img{src: 'images/konnekt_live_logo_white.png', alt: 'Konnekt Live logo'}
     .profs
       - @professions.each_with_index do |prof, index|
-        - if prof[1]['image'] && (!prof[1]['unpublished'] || params[:test])
+        - if prof[1]['image'] && displayable?(prof[1])
           %h4{id: "prof-#{prof[0]}", class: "prof-item #{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
             data: prof[1]}= prof[1]['title']
       %h4{class: "#{@rotations.sample} green"}= @texts['and-more']
@@ -97,7 +97,8 @@
               %h3= program[1]['title']
               - if program[1]['key']
                 - program[1]['key'].split(';').each do |k|
-                  %h4.presenter{data: {key: k}}= @professions[k]['name'] + ', ' + @professions[k]['title']
+                  - if @professions.has_key? k
+                    %h4.presenter{data: {key: k}}= @professions[k]['name'] + ', ' + @professions[k]['title']
               - if program[1]['name']
                 - program[1]['name'].split(';').each do |n|
                   %h4= n

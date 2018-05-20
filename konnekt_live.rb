@@ -17,6 +17,16 @@ class KonnektLive < Sinatra::Base
     @rotations = %w(rotate-l1 rotate-l2 rotate-r1 rotate-r2)
   end
 
+  helpers do
+    def staging?
+      request.host == 'staging.konnektlive.com' || request.host == 'localhost'
+    end
+
+    def displayable?(item)
+      !item['unpublished'] || staging?
+    end
+  end
+
   get '/' do
     params['reg'] = {}
     haml :index
