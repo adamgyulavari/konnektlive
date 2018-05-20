@@ -23,7 +23,7 @@
   %section.title.strict#professions
     %img{src: 'images/konnekt_live_logo_white.png', alt: 'Konnekt Live logo'}
     .profs
-      - @professions.each_with_index do |prof, index|
+      - sort_by(@professions, 'title').each_with_index do |prof, index|
         - if prof[1]['image'] && displayable?(prof[1])
           %h4{id: "prof-#{prof[0]}", class: "prof-item #{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
             data: prof[1]}= prof[1]['title']
@@ -119,7 +119,7 @@
         %input{name: 'reg[school]', class: 'email full', placeholder: 'Iskolád neve', type: 'text', required: 'true', value: params['reg']['school']}
         %h6 Ezek a szakmák érdekelnek:
         .prof-checks
-          - @professions.each do |prof|
+          - sort_by(@professions, 'title').each do |prof|
             - if prof[1]['title'] && !prof[1]['side']
               .prof
                 %input{name: "prof[]", value: prof[0], type: 'checkbox', id: "cb-prof-#{prof[0]}", checked: params['prof'] && params['prof'].include?(prof[0])}
@@ -210,10 +210,10 @@
       }
       if($('.profession').hasClass('closed')) {
         $('.profession').removeClass('closed')
-        $('html, body').animate({
-            scrollTop: $(".profession").offset().top - 100
-        }, 500);
       }
+      $('html, body').animate({
+        scrollTop: $(".profession").offset().top - 100
+      }, 500);
     })
     $('.profession span').on('click', (e)=> {
       $('.profession').addClass('closed')

@@ -25,6 +25,10 @@ class KonnektLive < Sinatra::Base
     def displayable?(item)
       !item['unpublished'] || staging?
     end
+
+    def sort_by(hash, by)
+      hash.sort_by { |k, v| v[by].downcase }
+    end
   end
 
   get '/' do
