@@ -195,15 +195,15 @@
       $('#prof-' + $(e.target).data('key')).click()
     })
     $('.profs .prof-item').on('click', (e) => {
-      $('#prof_title').text($(e.target).data('title'))
-      $('#prof_name').text($(e.target).data('name'))
-      $('#prof_description').text($(e.target).data('long'))
+      $('#prof_title').html($(e.target).data('title'))
+      $('#prof_name').html($(e.target).data('name'))
+      $('#prof_description').html($(e.target).data('long'))
       $('#prof_image').attr('src', $(e.target).data('image'))
       if($(e.target).data('other-name')) {
         $('.other').show()
-        $('#prof_title_other').text($(e.target).data('title'))
-        $('#prof_name_other').text($(e.target).data('other-name'))
-        $('#prof_description_other').text($(e.target).data('other-long'))
+        $('#prof_title_other').html($(e.target).data('title'))
+        $('#prof_name_other').html($(e.target).data('other-name'))
+        $('#prof_description_other').html($(e.target).data('other-long'))
         $('#prof_image_other').attr('src', $(e.target).data('other-image'))
       } else {
         $('.other').hide()
