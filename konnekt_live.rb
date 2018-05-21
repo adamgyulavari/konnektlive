@@ -104,15 +104,19 @@ class KonnektLive < Sinatra::Base
     attachment "konnekt_live_registrations-#{Time.now.strftime("%Y%m%d-%H%M")}.csv"
     @regs = db.get('registrations')
     csv_string = CSV.generate do |csv|
-      keys = ['name', 'email', 'year', 'school', 'professions', 'news', 'terms', 'created']
-      csv << keys
+      keys = ['name', 'email', 'year', 'school', 'professions', 'news', 'terms', 'pic-terms', 'created']
+      csv << keys + ['id', 'confirm-url']
       @regs.each do |reg|
-        csv << keys.map{|k| reg[1][k].is_a?(Array) ? reg[1][k].join(" ") : reg[1][k]}
+        csv << (keys.map{|k| reg[1][k].is_a?(Array) ? reg[1][k].join(" ") : reg[1][k]} + additional_csv(reg[0]))
       end
     end
   end
 
   private
+
+  def additional_csv(id)
+    [id, "http://konnektlive.com/confirm?id=#{id}"]
+  end
 
   def collect(original, what)
     h = Hash.new
