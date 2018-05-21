@@ -1,0 +1,139 @@
+!!!
+%html{lang: 'hu', prefix: 'og: http://ogp.me/ns#'}
+  %head
+    %title= @texts['title']
+    %meta{charset: 'utf-8'}
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %link{href: 'stylesheets/style13.css', rel: 'stylesheet'}
+    %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
+    %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
+    %meta{content: @texts['title'], property: "og:title"}/
+    %meta{content: "website", property: "og:type"}/
+    %meta{content: "http://www.konnektlive.com", property: "og:url"}/
+    %meta{content: "http://www.konnektlive.com/images/konnektlive_header.png", property: "og:image"}/
+    %meta{content: @texts['og-desc'], property: 'og:description'}
+
+%body
+  %header.green.centered
+    %h2.menu{class: @rotations.sample, data: {id: 'details'}} Regisztráció megerősítése
+    %a{href: '/'}
+      %h2{class: @rotations.sample} Vissza Konnekt LIVE főoldalára
+  %section.title.strict#professions
+    %img{src: 'images/konnekt_live_logo_white.png', alt: 'Konnekt Live logo'}
+  %section.white.main.strict#details
+    %h1.rotate-r1.blue
+      Kedves
+    %h2.rotate-l1.purple
+      = "#{@reg['name']}!"
+    - if @success
+      .row
+        %p= @texts['confirm-success']
+    - else
+      .row
+        .icon
+          %span.far.fa-calendar-check
+          %h3.rotate-l1= @texts['date-title']
+          %p Kérlek erősítsd meg, hogy számíthatunk rád szombaton!
+      %form{method: 'post', action: '/confirm'}
+        %input{type: 'hidden', name: 'id', value: params['id']}
+        .row
+          %input{name: 'confirm', type: 'checkbox', id: 'confirm-cb', value: 'confirmed'}
+          %label{for: 'confirm-cb'}
+            Igen, ott leszek szombaton!
+        - unless @reg['pic-terms'] == 'accepted'
+          .row
+            %input{name: 'pic-terms', type: 'checkbox', id: 'pic-terms', value: 'accepted'}
+            %label{for: 'pic-terms'}
+              %a{href: @texts['terms-pics-url'], target: '_blank'}= @texts['terms-pics']
+        %input{type: 'submit', value: 'Megerősítem', class: 'full button'}
+  %section.green.whitened.centered.bottom
+    %h4
+      %a.email.onwhite{href: "mailto:#{@texts['email']}"}= @texts['email'] 
+    %h3
+      %a.onwhite{href: 'http://knnkt.org', target: '_blank'}
+        ©2018 Konnekt Egyesület
+      .social
+        %a.onwhite{:href => "https://www.facebook.com/konnektmentorprogram", :target => "_blank"}
+          %i.fab.fa-facebook-square
+        %a.onwhite{:href => "https://www.youtube.com/channel/UCec5Hmtp-Vuv2aNZhZBga3w", :target => "_blank"}
+          %i.fab.fa-youtube
+        %a.onwhite{:href => "https://www.instagram.com/konnektmentorprogram/", :target => "_blank"}
+          %i.fab.fa-instagram
+  %section.white.centered
+    .scroller
+      %a.onwhite.black{id: 'to-top', href: '#'}
+        %img{src: 'images/arrow.png'}
+        = @texts['to-top']
+    
+    .empty
+  %script{:crossorigin => "anonymous", :integrity => "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", :src => "https://code.jquery.com/jquery-3.3.1.min.js"}
+  - if @success || (@errors && !@errors.empty?) || params['from_reg']
+    :javascript
+      $(()=>{
+        $('html, body').animate({
+          scrollTop: $("#registration").offset().top
+      }, 1000);
+      })
+  :javascript
+    $('#to-top').on('click', (e) => {
+      e.preventDefault()
+      $('html, body').animate({
+        scrollTop: 0
+    }, 1000);
+    })
+    $('.menu').on('click', (e) => {
+      $('html, body').animate({
+            scrollTop: $('#'+ $(e.target).data('id')).offset().top - 100
+      }, 500);
+    })
+    $('.presenter').on('click', (e) => {
+      $('#prof-' + $(e.target).data('key')).click()
+    })
+    $('.profs .prof-item').on('click', (e) => {
+      $('#prof_title').html($(e.target).data('title'))
+      $('#prof_name').html($(e.target).data('name'))
+      $('#prof_description').html($(e.target).data('long'))
+      $('#prof_image').attr('src', $(e.target).data('image'))
+      if($(e.target).data('other-name')) {
+        $('.other').show()
+        $('#prof_title_other').html($(e.target).data('title'))
+        $('#prof_name_other').html($(e.target).data('other-name'))
+        $('#prof_description_other').html($(e.target).data('other-long'))
+        $('#prof_image_other').attr('src', $(e.target).data('other-image'))
+      } else {
+        $('.other').hide()
+      }
+      if($('.profession').hasClass('closed')) {
+        $('.profession').removeClass('closed')
+      }
+      $('html, body').animate({
+        scrollTop: $(".profession").offset().top - 100
+      }, 500);
+    })
+    $('.profession span').on('click', (e)=> {
+      $('.profession').addClass('closed')
+      $('html, body').animate({
+            scrollTop: $(".title").offset().top
+        }, 300);
+    })
+    console.log("bla")
+    $(window).scroll(function() {
+      if ($(document).scrollTop() > 50) {
+        $('header').addClass('shrink');
+      } else {
+        $('header').removeClass('shrink');
+      }
+    });
+    $('.profs .prof-item').each((i, item) => {
+      let image = new Image()
+      console.log("bla" + $(item).data('image'))
+      image.src = $(item).data('image')
+      $(".empty").append(image)
+    })
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));

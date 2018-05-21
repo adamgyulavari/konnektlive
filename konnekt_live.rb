@@ -42,6 +42,19 @@ class KonnektLive < Sinatra::Base
     haml :index
   end
 
+  get '/confirm' do
+    @reg = db.get('registrations/'+params['id'])
+    haml :confirm
+  end
+
+  post '/confirm' do
+    @reg = db.get('registrations/'+params['id'])
+    db.set("registrations/#{params['id']}/confirmed", params['confirm'])
+    db.set("registrations/#{params['id']}/pic-terms", params['pic-terms']) if params['pic-terms']
+    @success = true
+    haml :confirm
+  end
+
 
   post '/' do
     response = db.push("newsletter", {

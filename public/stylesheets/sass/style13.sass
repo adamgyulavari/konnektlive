@@ -200,47 +200,51 @@ section
       font-size: 25px
       letter-spacing: 3px
       font-weight: 300
-
+.white
+  a
+    color: black
+  label
+    display: flex
 .green
   h6
     width: 600px
     margin: 0 auto
-  form
-    width: 600px
-    margin: 0 auto
-
-    .row
-      margin: 10px
-    a
-      text-decoration: underline
-
-    .full
-      border-width: 4px
-      border-style: solid
-      padding: 8px
-      width: 100%
-      box-sizing: border-box
-      margin-bottom: 10px 
-
-      &.email
-        border-color: #FFFFFF
-        background-color: $green
-        color: white
-        font-size: 15px
-
-    .button
-      background-color: black !important
-      border-color: #000000
-      color: white
-      font-size: 18px
-      text-transform: uppercase
-      font-weight: bold
-      margin-bottom: 40px
   a
     color: white
 
     &:hover
       color: $grey
+form
+  width: 600px
+  margin: 0 auto
+
+  .row
+    margin: 10px
+  a
+    text-decoration: underline
+
+.full
+  border-width: 4px
+  border-style: solid
+  padding: 8px
+  width: 100%
+  box-sizing: border-box
+  margin-bottom: 10px 
+
+  &.email
+    border-color: #FFFFFF
+    background-color: $green
+    color: white
+    font-size: 15px
+
+.button
+  background-color: black !important
+  border-color: #000000
+  color: white
+  font-size: 18px
+  text-transform: uppercase
+  font-weight: bold
+  margin-bottom: 40px
 
 .programs
   display: flex
@@ -468,12 +472,12 @@ input[type=checkbox]:checked + label:before
     overflow: hidden
     h6
       width: 100%
-    form
-      width: 100%
-      padding: 20px
-      box-sizing: border-box
-      input
-        font-size: 25px !important
+  form
+    width: 100%
+    padding: 20px
+    box-sizing: border-box
+    input
+      font-size: 25px !important
   .prof-checks
     .prof
       width: 80%

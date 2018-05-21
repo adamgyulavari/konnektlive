@@ -10,6 +10,10 @@ class Database
     @firebase.get(name).body
   end
 
+  def set(path, data)
+    @firebase.set(path, data)
+  end
+
   def push(name, value)
     value['created'] = Firebase::ServerValue::TIMESTAMP
     @firebase.push(name, value)
