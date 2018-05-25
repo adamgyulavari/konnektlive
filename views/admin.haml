@@ -17,19 +17,10 @@
   %section.centered
     %h2.rotate-l2 Admin area
   %section.white.main.strict.max
-    %h1.rotate-r1.blue= "Newsletter signups (#{@news_signups.count})"
-    %p
-      Before registration:
-      - @news_signups.each do |n|
-        = n[1]['email'] + ','
-    %p
-      With registration:
-      - @regs.each do |reg|
-        - if reg[1]['news']
-          = reg[1]['email'] + ','
     %h1.rotate-l1.purple= "Registrations (#{@regs.count})"
     %a{href: '/csv?key=' + params[:key]}
       %h4.blue.white Download reg data
+    %h1.rotate-r2.blue= "Confirmed registrations: #{@confirmed}"
     %p
       - @regs.each do |reg|
         = reg[1]['email'] + ','
@@ -45,3 +36,13 @@
         %tr
           %td= s[0]
           %td= s[1]
+    %h1.rotate-r1.blue= "Newsletter signups (#{@news_signups.count})"
+    %p
+      Before registration:
+      - @news_signups.each do |n|
+        = n[1]['email'] + ','
+    %p
+      With registration:
+      - @regs.each do |reg|
+        - if reg[1]['news']
+          = reg[1]['email'] + ','
