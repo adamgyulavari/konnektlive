@@ -15,6 +15,7 @@ class KonnektLive < Sinatra::Base
     @sponsors = db.get('sponsors')
     @partners = db.get('partners')
     @rotations = %w(rotate-l1 rotate-l2 rotate-r1 rotate-r2)
+    @settings = db.get('settings')
   end
 
   helpers do
@@ -24,6 +25,12 @@ class KonnektLive < Sinatra::Base
 
     def displayable?(item)
       !item['unpublished'] || staging?
+    end
+
+    def display_section(section)
+      return true if @settings[section] == 'production'
+      return true if @settings[section] == 'staging' && staging?
+      return false
     end
 
     def sort_by(hash, by)
