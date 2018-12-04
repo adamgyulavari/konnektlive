@@ -16,11 +16,16 @@
 %body
   - if display_section('header')
     %header.green.centered
-      %h2.menu{class: @rotations.sample, data: { id: 'professions' }} Szakmák
-      %h2.menu{class: @rotations.sample, data: { id: 'details' }} Mi ez?
-      %h2.menu{class: @rotations.sample, data: { id: 'program' }} Program
-      %h2.menu{class: @rotations.sample, data: { id: 'registration' }} Regisztráció
-      %h2.menu{class: @rotations.sample, data: { id: 'sponsors' }} Támogatók
+      - if display_section('professions')
+        %h2.menu{class: @rotations.sample, data: { id: 'professions' }} Szakmák
+      - if display_section('details')
+        %h2.menu{class: @rotations.sample, data: { id: 'details' }} Mi ez?
+      - if display_section('program')
+        %h2.menu{class: @rotations.sample, data: { id: 'program' }} Program
+      - if display_section('registration')
+        %h2.menu{class: @rotations.sample, data: { id: 'registration' }} Regisztráció
+      - if display_section('sponsors')
+        %h2.menu{class: @rotations.sample, data: { id: 'sponsors' }} Támogatók
   - if display_section('professions')
     %section.title.strict#professions
       %img{src: 'images/konnekt_live_logo_white.png', alt: 'Konnekt Live logo'}
