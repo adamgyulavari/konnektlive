@@ -1,8 +1,8 @@
 require 'sinatra'
 require 'json'
 require 'csv'
-require './database'
-# require './dummy_database'
+# require './database'
+require './dummy_database'
 
 class KonnektLive < Sinatra::Base
   private_secrets = JSON.parse(File.open('config/secrets.json').read)
