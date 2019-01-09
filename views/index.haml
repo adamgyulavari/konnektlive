@@ -35,23 +35,23 @@
             %h4{id: "prof-#{prof[0]}", class: "#{prof[1]['image'] ? 'prof-item':''} #{@rotations.sample} #{(index % 2 == 0) ? 'blue' : 'purple'}", 
               data: prof[1]}= prof[1]['title']
         %h4{class: "#{@rotations.sample} green"}= @texts['and-more']
-      %section.profession.green.closed.strict
-        .first
-          %img#prof_image{src: 'https://firebasestorage.googleapis.com/v0/b/konnektlive.appspot.com/o/To%CC%81th%20A%CC%81gi.JPG?alt=media&token=2684f4ff-b177-48e7-a7da-f9d652d23a91', alt: 'Toth Agi'}
-          .details
-            .close.icon
-              %span.fas.fa-times
-            %h2#prof_title{class: "#{@rotations.sample}"} Ruhatervezo
-            %h3#prof_name Toth Agi
-            %p#prof_description
-              Elismert menekültekkel és oltalmazotti sátuszú emberekkel foglalkozom, akik hazájukat kényszerűségből elhagyva itt, nálunk kezdhetnek új életet. Munkám része a státusz megítélése utáni lépések: az elsődleges életfeltételekhez segítés (lakás, élelmiszer, munka), az egészségügyi- és egyéb ellátásokhoz jutás, a szociális és kulturális integráció segítése, pszichés támogatás, stb. Kisgyerekektől idős korig százféle életút, százféle igény, s ezer megoldási lehetőség színesítik a mindennapjaimat!
-        .other
-          %img#prof_image_other
-          .details
-            %h2#prof_title_other{class: "#{@rotations.sample}"} Ruhatervezo
-            %h3#prof_name_other Toth Agi
-            %p#prof_description_other
-              Elismert menekültekkel és oltalmazotti sátuszú emberekkel foglalkozom, akik hazájukat kényszerűségből elhagyva itt, nálunk kezdhetnek új életet. Munkám része a státusz megítélése utáni lépések: az elsődleges életfeltételekhez segítés (lakás, élelmiszer, munka), az egészségügyi- és egyéb ellátásokhoz jutás, a szociális és kulturális integráció segítése, pszichés támogatás, stb. Kisgyerekektől idős korig százféle életút, százféle igény, s ezer megoldási lehetőség színesítik a mindennapjaimat!
+  %section.profession.green.closed.strict
+    .first
+      %img#prof_image{src: 'https://firebasestorage.googleapis.com/v0/b/konnektlive.appspot.com/o/To%CC%81th%20A%CC%81gi.JPG?alt=media&token=2684f4ff-b177-48e7-a7da-f9d652d23a91', alt: 'Toth Agi'}
+      .details
+        .close.icon
+          %span.fas.fa-times
+        %h2#prof_title{class: "#{@rotations.sample}"} Ruhatervezo
+        %h3#prof_name Toth Agi
+        %p#prof_description
+          Elismert menekültekkel és oltalmazotti sátuszú emberekkel foglalkozom, akik hazájukat kényszerűségből elhagyva itt, nálunk kezdhetnek új életet. Munkám része a státusz megítélése utáni lépések: az elsődleges életfeltételekhez segítés (lakás, élelmiszer, munka), az egészségügyi- és egyéb ellátásokhoz jutás, a szociális és kulturális integráció segítése, pszichés támogatás, stb. Kisgyerekektől idős korig százféle életút, százféle igény, s ezer megoldási lehetőség színesítik a mindennapjaimat!
+    .other
+      %img#prof_image_other
+      .details
+        %h2#prof_title_other{class: "#{@rotations.sample}"} Ruhatervezo
+        %h3#prof_name_other Toth Agi
+        %p#prof_description_other
+          Elismert menekültekkel és oltalmazotti sátuszú emberekkel foglalkozom, akik hazájukat kényszerűségből elhagyva itt, nálunk kezdhetnek új életet. Munkám része a státusz megítélése utáni lépések: az elsődleges életfeltételekhez segítés (lakás, élelmiszer, munka), az egészségügyi- és egyéb ellátásokhoz jutás, a szociális és kulturális integráció segítése, pszichés támogatás, stb. Kisgyerekektől idős korig százféle életút, százféle igény, s ezer megoldási lehetőség színesítik a mindennapjaimat!
   - if display_section('details')
     %section.white.main.strict#details
       %h1.rotate-r1.blue
