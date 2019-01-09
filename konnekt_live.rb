@@ -101,6 +101,8 @@ class KonnektLive < Sinatra::Base
     @schools = collect(@regs, 'school')
     @profs = collect_arrays(@regs, 'professions')
     @confirmed = @regs.select{|_, a| a['confirmed']}.count
+    @teachers = @regs.select{|_, r| r['type'] == 'teacher'}
+    @students = @regs.select{|_, r| r['type'] != 'teacher'}
     haml :admin
   end
 
@@ -112,7 +114,7 @@ class KonnektLive < Sinatra::Base
     attachment "konnekt_live_registrations-#{Time.now.strftime("%Y%m%d-%H%M")}.csv"
     @regs = db.get('registrations')
     csv_string = CSV.generate do |csv|
-      keys = ['name', 'email', 'year', 'school', 'professions', 'news', 'terms', 'pic-terms', 'created', 'confirmed']
+      keys = ['name', 'email', 'year', 'school', 'professions', 'news', 'terms', 'pic-terms', 'created', 'confirmed', 'type']
       csv << keys + ['id', 'confirm-url']
       @regs.each do |reg|
         csv << (keys.map{|k| reg[1][k].is_a?(Array) ? reg[1][k].join(" ") : reg[1][k]} + additional_csv(reg[0]))

@@ -4,7 +4,7 @@
     %title= @texts['title']
     %meta{charset: 'utf-8'}
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
-    %link{href: 'stylesheets/style14.css', rel: 'stylesheet'}
+    %link{href: 'stylesheets/style15.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
     %meta{content: @texts['title'], property: "og:title"}/
@@ -129,8 +129,15 @@
           %input{name: 'reg[name]', class: 'email full', placeholder: 'Teljes neved', type: 'name', required: 'true', value: params['reg']['name']}
           %input{name: 'reg[year]', class: 'email full', placeholder: 'Születési éved', type: 'number', required: 'true', value: params['reg']['year']}
           %input{name: 'reg[school]', class: 'email full', placeholder: 'Iskolád neve', type: 'text', required: 'true', value: params['reg']['school']}
-          %h6 Ezek a szakmák érdekelnek:
-          .prof-checks
+          .row
+            %input{name: 'reg[type]', type: 'checkbox', id: 'type-cb-teacher', value: 'teacher'}
+            %label{for: 'type-cb-teacher'}
+              %strong= @texts['reg-teacher']
+          .row
+            %input{name: 'reg[type]', type: 'checkbox', id: 'type-cb-student', value: 'student'}
+            %label{for: 'type-cb-student'}
+              %strong= @texts['reg-student']
+          .prof-checks.gone
             - sort_by(@professions, 'title').each do |prof|
               - if prof[1]['title'] && !prof[1]['side']
                 .prof
@@ -239,6 +246,18 @@
       $('html, body').animate({
             scrollTop: $(".title").offset().top
         }, 300);
+    })
+    $('#type-cb-student').change(()=>{
+      if($('#type-cb-student')[0].checked) {
+        $('#type-cb-teacher')[0].checked = false
+      }
+      $('.prof-checks').toggleClass('gone')
+    })
+    $('#type-cb-teacher').change(()=>{
+      if($('#type-cb-teacher')[0].checked) {
+        $('#type-cb-student')[0].checked = false
+        $('.prof-checks').addClass('gone')
+      }
     })
     $(window).scroll(function() {
       if ($(document).scrollTop() > 50) {
