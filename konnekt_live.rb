@@ -12,6 +12,8 @@ class KonnektLive < Sinatra::Base
     @texts = db.get('texts')
     @professions = db.get('professions')
     @programs = db.get('programs').sort_by {|k, v| "#{v['start']}#{2400-v['end'].split(':').join('').to_i}"}
+    @programs_uni = db.get('programs-uni')
+    @programs_uni = @programs_uni.sort_by {|k, v| "#{v['start']}#{2400-v['end'].split(':').join('').to_i}"} if @programs_uni
     @sponsors = db.get('sponsors')
     @partners = db.get('partners')
     @rotations = %w(rotate-l1 rotate-l2 rotate-r1 rotate-r2)

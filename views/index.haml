@@ -4,7 +4,7 @@
     %title= @texts['title']
     %meta{charset: 'utf-8'}
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
-    %link{href: 'stylesheets/style15.css', rel: 'stylesheet'}
+    %link{href: 'stylesheets/style16.css', rel: 'stylesheet'}
     %link{href: 'https://fonts.googleapis.com/css?family=Raleway:400,600,700|Roboto:300,400', rel: 'stylesheet'}
     %link{rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.9/css/all.css', integrity: 'sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1', crossorigin: 'anonymous'}
     %meta{content: @texts['title'], property: "og:title"}/
@@ -97,22 +97,28 @@
     %section.grey.whitened.strict#program
       %h2
         = @texts['programs-title']
-      .programs
-        - if @programs
-          - @programs.each do |program|
-            .program
-              .start= program[1]['start']
-              .end= program[1]['end']
-              .details
-                %h3= program[1]['title']
-                - if program[1]['key']
-                  - program[1]['key'].split(';').each do |k|
-                    - if @professions.has_key? k
-                      %h4.presenter{data: {key: k}}= @professions[k]['name'] + ', ' + @professions[k]['title']
-                - if program[1]['name']
-                  - program[1]['name'].split(';').each do |n|
-                    %h4= n
-                %p= program[1]['short']
+      - if @texts.has_key? 'program-continous'
+        .programs
+          %h3.rotate-l1.blue= @texts['program-continous']
+          %p= @texts['program-continous-details']
+      - [@programs, @programs_uni].each_with_index do |programs, index|
+        .programs
+          - if programs
+            %h3.rotate-r1.blue= @texts["program-#{index+1}-title"]
+            - programs.each do |program|
+              .program
+                .start= program[1]['start']
+                .end= program[1]['end']
+                .details
+                  %h3= program[1]['title']
+                  - if program[1]['key']
+                    - program[1]['key'].split(';').each do |k|
+                      - if @professions.has_key? k
+                        %h4.presenter{data: {key: k}}= @professions[k]['name'] + ', ' + @professions[k]['title']
+                  - if program[1]['name']
+                    - program[1]['name'].split(';').each do |n|
+                      %h4= n
+                  %p= program[1]['short']
   - if display_section('video')
     %section.grey.strict#video
       %figure
