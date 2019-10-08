@@ -51,3 +51,10 @@
       - @regs.each do |reg|
         - if reg[1]['news']
           = reg[1]['email'] + ','
+  %section.title
+    %h3.rotate-r1.blue Archives
+    .profs
+      - @archives.each do |archive|
+        %h4.purple
+          %a{href: '/admin?key=' + params[:key] + '&year=' + archive[0]}
+            = archive[0]

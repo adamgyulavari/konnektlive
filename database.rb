@@ -6,8 +6,8 @@ class Database
     @firebase = Firebase::Client.new("https://konnektlive.firebaseio.com", private_key_json_string)
   end
 
-  def get(name)
-    @firebase.get(name).body
+  def get(name, options={})
+    @firebase.get(name, options).body
   end
 
   def set(path, data)

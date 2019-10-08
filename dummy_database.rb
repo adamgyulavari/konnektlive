@@ -6,7 +6,7 @@ class Database
     @a = 'qwertyuioasdfghjlzxcvbm1234567890'.split('')
   end
 
-  def get(name)
+  def get(name, options={})
     @data_hash[name]
   end
 
