@@ -25,7 +25,7 @@ GEM
     concurrent-ruby (1.0.5)
     faraday (0.14.0)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.23)
+    ffi (1.11.1)
     firebase (0.2.8)
       googleauth
       httpclient (>= 2.5.3)
