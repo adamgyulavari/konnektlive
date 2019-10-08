@@ -54,6 +54,9 @@
   %section.title
     %h3.rotate-r1.blue Archives
     .profs
+      %h4.purple
+        %a{href: '/admin?key=' + params[:key]}
+          Current
       - @archives.each do |archive|
         %h4.purple
           %a{href: '/admin?key=' + params[:key] + '&year=' + archive[0]}

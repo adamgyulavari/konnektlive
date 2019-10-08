@@ -5,10 +5,10 @@ require './database'
 # require './dummy_database'
 
 class KonnektLive < Sinatra::Base
-  private_secrets = JSON.parse(File.open('config/secrets.json').read)
   
   def initialize
     super
+    @private_secrets = JSON.parse(File.open('config/secrets.json').read)
     @db = Database.new
   end
 
@@ -99,9 +99,7 @@ class KonnektLive < Sinatra::Base
   end
 
   get '/admin' do
-    if params['key'] != private_secrets['admin_key']
-      redirect '/'
-    end
+    authorize!
 
     get_admin_data
     setup
@@ -110,9 +108,8 @@ class KonnektLive < Sinatra::Base
   end
 
   get '/csv' do
-    if params['key'] != private_secrets['admin_key']
-      redirect '/'
-    end
+    authorize!
+
     content_type 'application/csv'
     attachment "konnekt_live_registrations-#{Time.now.strftime("%Y%m%d-%H%M")}.csv"
     
@@ -128,6 +125,12 @@ class KonnektLive < Sinatra::Base
   end
 
   private
+
+  def authorize!
+    if params['key'] != @private_secrets['admin_key']
+      redirect '/'
+    end
+  end
 
   def get_admin_data
     prefix = ''
