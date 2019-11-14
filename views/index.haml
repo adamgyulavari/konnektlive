@@ -188,13 +188,13 @@
       %a.email.onwhite{href: "mailto:#{@texts['email']}"}= @texts['email'] 
     %h3
       %a.onwhite{href: 'http://knnkt.org', target: '_blank'}
-        ©2018 Konnekt Egyesület
+        ©2019 Konnekt Egyesület
       .social
-        %a.onwhite{:href => "https://www.facebook.com/konnektmentorprogram", :target => "_blank"}
+        %a.onwhite{:href => "https://www.facebook.com/konnektegyesulet", :target => "_blank"}
           %i.fab.fa-facebook-square
         %a.onwhite{:href => "https://www.youtube.com/channel/UCec5Hmtp-Vuv2aNZhZBga3w", :target => "_blank"}
           %i.fab.fa-youtube
-        %a.onwhite{:href => "https://www.instagram.com/konnektmentorprogram/", :target => "_blank"}
+        %a.onwhite{:href => "https://www.instagram.com/konnektegyesulet", :target => "_blank"}
           %i.fab.fa-instagram
   %section.white.centered
     .scroller
@@ -211,6 +211,27 @@
           scrollTop: $("#registration").offset().top
       }, 1000);
       })
+  <!-- Facebook Pixel Code -->
+  :javascript
+    let to = { action: 'main page' }
+    if('#{ request.path_info }' === '/reg') {
+      to = {
+        action: 'user registered',
+        email: '#{ params[:email] }'
+      }
+    }
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1390298377797969');
+    fbq('track', 'PageView', to);
+  %noscript
+    %img{height: "1", width: "1", style: "display:none", src: "https://www.facebook.com/tr?id=1390298377797969&ev=PageView&noscript=1"}
   :javascript
     $('#to-top').on('click', (e) => {
       e.preventDefault()
