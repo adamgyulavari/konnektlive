@@ -214,11 +214,14 @@
   <!-- Facebook Pixel Code -->
   :javascript
     let to = { action: 'main page' }
+    let action = 'PageView'
     if('#{ request.path_info }' === '/reg') {
       to = {
-        action: 'user registered',
-        email: '#{ params[:email] }'
+        action: 'user_registered',
+        email: '#{ params[:email] }',
+        content_name: '#{ params[:name] }'
       }
+      action = 'CompleteRegistration'
     }
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -229,9 +232,12 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1390298377797969');
-    fbq('track', 'PageView', to);
+    fbq('track', action, to);
   %noscript
-    %img{height: "1", width: "1", style: "display:none", src: "https://www.facebook.com/tr?id=1390298377797969&ev=PageView&noscript=1"}
+    - uridata = 'PageView'
+    - if request.path_info == '/reg'
+      - uridata += "&cd[action]=user_registered&cd[email]=#{ params[:email] }&cd[content_name]=#{ params[:name] }"
+    %img{height: "1", width: "1", style: "display:none", src: "https://www.facebook.com/tr?id=1390298377797969&ev=#{uridata}&noscript=1"}
   :javascript
     $('#to-top').on('click', (e) => {
       e.preventDefault()
