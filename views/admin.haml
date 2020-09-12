@@ -45,7 +45,8 @@
     %p
       Before registration:
       - @news_signups.each do |n|
-        = n[1]['email'] + ','
+        = n[1]['email']
+        ,
     %p
       With registration:
       - @regs.each do |reg|
