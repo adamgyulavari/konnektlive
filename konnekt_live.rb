@@ -46,7 +46,8 @@ class KonnektLive < Sinatra::Base
 
   get '/' do
     params['reg'] = {}
-    haml :index
+    redirect 'https://2020.konnektlive.com'
+    # haml :index
   end
 
   get '/register' do
